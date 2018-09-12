@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-09-06 20:59:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entite.Categorie" table="CATEGORIE" schema="ETEAM6" optimistic-lock="version">
+        <id name="idcategorie" type="short">
+            <column name="IDCATEGORIE" precision="3" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomcategorie" type="string">
+            <column name="NOMCATEGORIE" length="30" />
+        </property>
+        <set name="produits" table="PRODUIT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCATEGORIE" precision="3" scale="0" />
+            </key>
+            <one-to-many class="entite.Produit" />
+        </set>
+    </class>
+</hibernate-mapping>

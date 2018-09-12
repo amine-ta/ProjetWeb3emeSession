@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-09-06 20:59:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entite.LigneCommande" table="LIGNE_COMMANDE" schema="ETEAM6" optimistic-lock="version">
+        <composite-id name="id" class="entite.LigneCommandeId">
+            <key-property name="nocommande" type="big_decimal">
+                <column name="NOCOMMANDE" precision="30" scale="0" />
+            </key-property>
+            <key-property name="idproduit" type="big_decimal">
+                <column name="IDPRODUIT" precision="20" scale="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="commande" class="entite.Commande" update="false" insert="false" fetch="select">
+            <column name="NOCOMMANDE" precision="30" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="produit" class="entite.Produit" update="false" insert="false" fetch="select">
+            <column name="IDPRODUIT" precision="20" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="quantite" type="java.lang.Integer">
+            <column name="QUANTITE" precision="5" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>
