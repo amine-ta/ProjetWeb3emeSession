@@ -105,7 +105,7 @@
                                         <hr>
                                         <div class="desc"><b id="prix">Prix :${produit.prix} $<b></div>
                                              <hr>
-                                             <div class="desc"><b style="color:${(produit.quantiteenstock <=0)?"RED" :"GREEN"}">Etat :${(produit.quantiteenstock <=0)?"Epuisé" :"Disponible"}<b></div>
+                                             <div class="desc"><b style="color:${(produit.quantiteenstock <=0)?"RED" :"GREEN"}">État :${(produit.quantiteenstock <=0)?"Épuisé" :"Disponible"}<b></div>
                                             <hr>
                                         <form  action="ControPanier" method="post">  
                                             <input type="hidden"  name="qteSaisie" value="1"  />  

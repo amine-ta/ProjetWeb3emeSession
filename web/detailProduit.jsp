@@ -46,14 +46,14 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2>Categorie</h2>
+                            <h2>Catégorie</h2>
                             <p>${detailProduit.categorie.nomcategorie}</p>
                             <hr>
                         </div>  
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2>Quantite En Stock</h2>
+                            <h2>Quantité En Stock</h2>
                             <p>${detailProduit.quantiteenstock}</p>
                             <hr>
                         </div>  
@@ -79,12 +79,12 @@
                             <form name="ADDFORM" action="ControPanier" method="POST">
                                 <div class="col-sm-6">
                                     <label id="qte">Quantité:  </label>
-                                    <input type="${(detailProduit.quantiteenstock <=0)?"hidden" :"text"}"  name="qteSaisie" value="1"  />                                 
+                                    <input type="${(detailProduit.quantiteenstock <=0)? "hidden" :"text"}"  name="qteSaisie" value="1"  />                                 
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="hidden"  name="idItem" value="${detailProduit.idproduit}"/>
                                     <input type="hidden"  name="action" value="ADD" />
-                                    <input type="${(detailProduit.quantiteenstock <=0)?"HIDDEN" :"SUBMIT"}" class="btn btn-info " value="AJOUTER AU PANIER" />
+                                    <input type="${(detailProduit.quantiteenstock <=0)? "HIDDEN" :"SUBMIT"}" class="btn btn-info " value="AJOUTER AU PANIER" />
                                 </div>
                                 <hr>    
 
