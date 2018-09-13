@@ -42,4 +42,10 @@ public class GestionnaireProduit
         return categorieDAO.getAllCategorie();
     }
     
+    public static void modifierQuantiteEnStockProduit(Produit produit, Integer qteEnStock)
+    {
+        ProduitDAO.updateQteStock(produit, qteEnStock);
+       
+    }
+    
 }

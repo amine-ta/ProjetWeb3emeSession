@@ -57,6 +57,25 @@ public class ProduitDAO {
         }
         return null;
     }
+    
+    public static void updateQteStock(Produit produit, Integer quantiteEnStock)
+    {
+        try
+        {
+            Transaction tx = OpenSessionWithTransaction();
+            produit.setQuantiteenstock(quantiteEnStock);
+            session.update(produit);
+            tx.commit();
+        }
+        catch(Exception e){
+        }
+        finally{
+        session.close();  
+        }
+       
+       
+    }  
+    
         
     
 }

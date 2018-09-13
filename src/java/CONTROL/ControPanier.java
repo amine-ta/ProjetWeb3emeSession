@@ -6,6 +6,7 @@
 package CONTROL;
 
 import DAO.ProduitDAO;
+import JavaMethodes.GestionnaireProduit;
 import entite.LigneCommande;
 import entite.Produit;
 import java.io.IOException;
@@ -69,23 +70,26 @@ public class ControPanier extends HttpServlet {
                 Produit pro = ProduitDAO.getSingleProduit(new BigDecimal(id));
                 lignecmd.setProduit(pro);
                 Integer quantite = Integer.valueOf(qte);
-                lignecmd.setQuantite(quantite);
-                
-                if (buylist == null) {
-                    count++;
-                    buylist = new Vector();
-                    buylist.addElement(lignecmd);
-                } else {
-                    for (int i = 0; i < buylist.size(); i++) {
-                  //      Produit produitDeSession = (Produit) buylist.get(i);
+                if (pro.getQuantiteenstock() >= quantite)
+                {    
+                  lignecmd.setQuantite(quantite);
+                  Integer nouvelleQteEnStock = pro.getQuantiteenstock() - lignecmd.getQuantite();
+                  session.setAttribute("detailProduit",pro);
+                  if (buylist == null) {
+                     count++;
+                     buylist = new Vector();
+                     buylist.addElement(lignecmd);
+                  } else {
+                      for (int i = 0; i < buylist.size(); i++) {
                         LigneCommande lgDeSession = (LigneCommande) buylist.get(i);
                         
                         if (lgDeSession.getProduit().getIdproduit().equals(lignecmd.getProduit().getIdproduit()))
-                                {
-                                    lgDeSession.setQuantite(lgDeSession.getQuantite() + lignecmd.getQuantite());
-                                    buylist.setElementAt(lgDeSession,i);
-                                    match = true;
-                                }
+                        {
+                           lgDeSession.setQuantite(lgDeSession.getQuantite() + lignecmd.getQuantite());
+                           buylist.setElementAt(lgDeSession,i);
+                           match = true;
+                           nouvelleQteEnStock = pro.getQuantiteenstock() - lgDeSession.getQuantite();
+                        }
                     }
 
                     if (!match) {
@@ -102,7 +106,12 @@ public class ControPanier extends HttpServlet {
                 if(action.equals("portail")){
                     url = "/portail.jsp";
                 }
-                
+              }
+              else
+                {
+                    request.setAttribute("MessageErreurQteEnStockProd","La quantité en stock est insuffisante");
+                    url = "/detailProduit.jsp";
+                }
             }
          
             else if(action.equals("cart")){

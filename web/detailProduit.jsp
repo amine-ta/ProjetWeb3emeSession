@@ -85,6 +85,7 @@
                                     <input type="hidden"  name="idItem" value="${detailProduit.idproduit}"/>
                                     <input type="hidden"  name="action" value="ADD" />
                                     <input type="${(detailProduit.quantiteenstock <=0)? "HIDDEN" :"SUBMIT"}" class="btn btn-info " value="AJOUTER AU PANIER" />
+                                    ${MessageErreurQteEnStockProd}
                                 </div>
                                 <hr>    
 
