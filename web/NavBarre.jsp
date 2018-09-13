@@ -11,7 +11,7 @@
     
     <ul class="nav navbar-nav navbar-right">
       <li><a href="ControPanier?action=cart"><span class="glyphicon glyphicon-shopping-cart"></span> Panier: ${count}</a></li>
-      <li><a href="ControlClient"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="PageClient.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
 
 </nav>
