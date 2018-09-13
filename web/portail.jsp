@@ -62,12 +62,9 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div>            
                
-               
-            </div>
-
-                
+            </div>                
                     <div class="row">
                     <form>                        
                         <div class="col-sm-6">
@@ -96,30 +93,30 @@
            <div class="row">
                 <c:forEach var = "produit" items="${ListPoduit}">
                     <div class="col-lg-3"> 
-                        <div class="cellule grand">
-                            <div class="gallery">
-
-                                <a href="detailProduit?id=${produit.idproduit}&action=detail">${produit.idproduit}  
-
-                                        <img src="./images/${produit.image}" alt="Cinque Terre"/>
-                                        <hr>
-                                        <div class="desc"><b id="prix">Prix :${produit.prix} $<b></div>
-                                             <hr>
-                                             <div class="desc"><b style="color:${(produit.quantiteenstock <=0)?"RED" :"GREEN"}">État :${(produit.quantiteenstock <=0)?"Épuisé" :"Disponible"}<b></div>
-                                            <hr>
+                        <div class="cellule grand">  
+                             <a href="detailProduit?id=${produit.idproduit}&action=detail"> 
+                                <div class="image">
+                                       <img src="./images/${produit.image}" alt="Cinque Terre"/>
+                                </div>   
+                             </a>    
+                                     <hr>                                     
+                                <div class="description">                                
+                                                                   
+                                        <b id="prix">Prix :${produit.prix} $</b><br>                                 
+                                        <b style="color:${(produit.quantiteenstock <=0)?"RED" :"GREEN"}">État :${(produit.quantiteenstock <=0)?"Épuisé" :"Disponible"}</b>
+                             
+                                          <hr>
                                         <form  action="ControPanier" method="post">  
                                             <input type="hidden"  name="qteSaisie" value="1"  />  
                                             <input type="hidden"  name="idItem" value="${produit.idproduit}"/>
                                             <input type="hidden"  name="action" value="portail" />
-                                            <div><input type="${(produit.quantiteenstock <=0)?"HIDDEN" :"SUBMIT"}" id="boutonPortail" class="btn btn-info " value="Ajouter au panier" /></div>
-                                        </form>
-                               </a> 
-                            </div>    
+                                            <input type="${(produit.quantiteenstock <=0)?"HIDDEN" :"SUBMIT"}"  class="btn btn-info " value="Ajouter au panier" />
+                                        </form>                                     
+                                </div>
                         </div>     
                     </div>  
                 </c:forEach>
             </div>
-
         </div>
 </body>
 </html>
