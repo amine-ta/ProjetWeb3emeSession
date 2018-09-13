@@ -26,7 +26,7 @@
         <jsp:include page="NavBarre.jsp"/>
         <div class="container">      
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div id="main" class="cellule grand">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
@@ -63,23 +63,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="cellule moyen">
-
-                    </div>
-                    <div class="cellule petit">
-
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="cellule moyen">
-
-                    </div>
-                    <div class="cellule petit">
-
-                    </div>
-
-                </div>
+               
+               
             </div>
 
                 
