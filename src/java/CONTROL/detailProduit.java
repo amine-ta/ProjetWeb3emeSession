@@ -47,7 +47,7 @@ public class detailProduit extends HttpServlet {
         HttpSession session = request.getSession();
         
         action = request.getParameter("action");
-         
+        String finProWithItems=request.getParameter("marque");
     
   try{
       
@@ -60,22 +60,13 @@ public class detailProduit extends HttpServlet {
             nextJSP = "/detailProduit.jsp";
         }
         
-    
-       else
-        {
-            
-            List LiCategorie = GestionnaireProduit.rechercherToutesCategories();
-            List LiMarque = GestionnaireProduit.rechercherToutesMarques();
-            List LiProduit = GestionnaireProduit.rechercherTousProduits();
-            
-            session.setAttribute("count", ControPanier.count);
-            session.setAttribute("ListPoduit", LiProduit);
-            session.setAttribute("ListMarque", LiMarque);
-            session.setAttribute("ListCategorie", LiCategorie);
+  
+       if(finProWithItems!=null){
+           List LiProduit=GestionnaireProduit.rechercherProduitParMarque();
+            session.setAttribute("ListPoduit",LiProduit);
             nextJSP = "/portail.jsp";
-        }
-        
-      
+           
+       }
       
   }  catch(Exception e){
     

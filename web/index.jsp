@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:forward page="detailProduit" />
+<jsp:forward page="init" />
 <!DOCTYPE html>
 <html>
     <head>

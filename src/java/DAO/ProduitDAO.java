@@ -5,13 +5,17 @@
  */
 package DAO;
 
+import entite.Marque;
 import entite.Produit;
 import java.math.BigDecimal;
 import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -58,16 +62,21 @@ public class ProduitDAO {
         return null;
     }
     
-    public static List<Produit> getProduitParMarque(String marque)
-    {
-        getOpenSession();
-        Query query = session.createQuery("FROM Produit P INNER JOIN P.marque M "
-                                            + "WHERE M.nom = :NOMMARQUE ");
-        
-        query.setParameter("NOMMARQUE",marque);
-        List<Produit> results = query.list();
-        session.close();
-        return results;
+    public static List<Produit> getProduitParMarque()
+            { 
+            
+           Criteria criteria = session.createCriteria(Produit.class,"produit").createAlias("produit.marque","produ").add(Restrictions.eq("produit.nom", "Mutant"));
+            List list = criteria.list();
+           
+   
+//        getOpenSession();
+//        Query query = session.createQuery("FROM Produit P INNER JOIN P.marque M "
+//                                            + "WHERE M.nom = :NOMMARQUE ");
+//        
+//        query.setParameter("NOMMARQUE",marque);
+//        List<Produit> results = query.list();
+//        session.close();
+        return list;
   
     }
     
