@@ -67,14 +67,14 @@
 
                         <div class="col-lg-6">                       
                             <input type="hidden" name="action" value="CHECKOUT"/>
-                            <span><input type="submit" name="action" class="btn btn-info" value="Checkout" /></span>
+                            <span><input type="submit" name="action" class="btn btn-info" value="Passer à la caisse" /></span>
                         </div> 
 
                     </form>     
                     <form action="detailProduit" method="post">                          
                         <div class="col-lg-6"> 
                             <input type="hidden" name="action" value="SHOPPING"/>
-                            <span><input type="submit" class="btn btn-info" value="Continue Shopping" /></span>
+                            <span><input type="submit" class="btn btn-info" value="Continuer magasinage" /></span>
                         </div>  
                     </form> 
                 </div> 
@@ -87,7 +87,7 @@
                         <form action="detailProduit" method="post">                          
                            
                                 <input type="hidden" name="action" value="SHOPPING"/>
-                                <span><input type="submit" class="btn btn-info" value="Continue Shopping" /></span>
+                                <span><input type="submit" class="btn btn-info" value="Continuer magasinage" /></span>
                              
                         </form> 
                     </div>  

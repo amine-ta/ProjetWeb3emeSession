@@ -5,8 +5,8 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="detailProduit">Accueil</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
+      <li><a href="portail.jsp">Français</a></li>
+      <li><a href="portailEng.jsp">English</a></li>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
