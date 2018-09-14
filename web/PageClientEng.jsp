@@ -1,7 +1,9 @@
 <%-- 
-    Document   : PageClient
-    Created on : 2018-09-07, 09:02:37
+    Document   : PageClientEng
+    Created on : 2018-09-14, 08:21:00
     Author     : Mohamed Amine Tarhouni, Gian Gabriele Ciampa
+     ---
+                 English version for the Client Page Login/Inscription
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-         <title>Ventes de Protéines - Page Client</title>
+         <title>Proteins Sale - Client Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,7 +21,7 @@
         <link href="css/style.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        <jsp:include page="NavBarre.jsp"/>
+        <jsp:include page="NavBarreEng.jsp"/>
          
         <div class="container">
             <div class="row">
@@ -30,23 +32,23 @@
                     
                     <form  class="well form-horizontal" name="ExistantClient" action="ControlClient" method="post">
   
-                     <center><h2><b>Je suis un Client Existant</b></h2></center><br>
+                     <center><h2><b>I am an Existing Client</b></h2></center><br>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Courriel</label>  
+                        <label class="col-md-4 control-label">Email</label>  
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                             <input  value="${logincourrielv}" name="logincourriel" size="23" type="email">
+                             <input  value="${logincourrielv}" name="logincourriel" size="20" type="email">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Mot de passe</label> 
+                        <label class="col-md-4 control-label" >Password</label> 
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${loginmdpv}" name="loginmdp" size="23"  type="password">
+                            <input value="${loginmdpv}" name="loginmdp" size="20"  type="password">
                         </div>
                         </div>
                     </div>
@@ -55,13 +57,13 @@
                         <label class="col-md-4 control-label"></label>
                         <div class="col-md-4"><br>
                         <input type="hidden" name="action" value="CLIENTEXISIT"/>    
-                        <button type="submit" class="btn btn-warning" >OUVRIR SESSION<span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" class="btn btn-warning" >OPEN SESSION<span class="glyphicon glyphicon-send"></span></button>
                         </div>
                     </div> 
                      
                     <h3>${MessageErreurLogin}</h3>
-                    <input name ="langue" value="francais" type="hidden"> 
-                  
+                    <input name ="langue" value="english" type="hidden"> 
+                     
                     </form>    
                     </div>    
                 </div>
@@ -70,73 +72,73 @@
                  <div class="cellule droite">
                 <form  class="well form-horizontal" name="CreationClient" action="CreationClient" method="post">
   
-                     <center><h2><b>Je suis un nouveau Client</b></h2></center><br>
+                     <center><h2><b>I am a new Client</b></h2></center><br>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Prénom</label>  
+                        <label class="col-md-4 control-label">Firstname</label>  
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                             <input  value="${prenomv}" name="prenom" placeholder="Prénom - requis" size="25" type="text" required>
+                             <input  value="${prenomv}" name="prenom" placeholder="Firstname - required" size="25" type="text" required>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Nom</label> 
+                        <label class="col-md-4 control-label" >Lastname</label> 
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${nomv}" name="nom" placeholder="Nom - requis " size="25"  type="text" required>
+                            <input value="${nomv}" name="nom" placeholder="LastName - required " size="25"  type="text" required>
                         </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Téléphone</label> 
+                        <label class="col-md-4 control-label" >Phone Number</label> 
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input value="${telephonev}" name="telephone" placeholder="Téléphone" size="25"  >
+                            <input value="${telephonev}" name="telephone" placeholder="Phone Number" size="25"  >
                             </div>
                         </div>
                     </div>
             
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Numéro civique</label> 
+                        <label class="col-md-4 control-label" >Street Number</label> 
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${nociviquev}" name="nocivique" placeholder="Numéro Civique" size="25"  type="text">
+                            <input value="${nociviquev}" name="nocivique" placeholder="Street Number" size="25"  type="text">
                         </div>
                         </div>
                     </div>
             
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Appartement</label> 
+                        <label class="col-md-4 control-label" >Apartment #</label> 
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${noappv}" name="noapp" placeholder="Appartement" size="25"  type="text">
+                            <input value="${noappv}" name="noapp" placeholder="Apartment #" size="25"  type="text">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Rue</label> 
+                        <label class="col-md-4 control-label" >Street Name</label> 
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${ruev}" name="rue" placeholder="Rue" size="25"  type="text">
+                            <input value="${ruev}" name="rue" placeholder="Street Name" size="25"  type="text">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                         <label class="col-md-4 control-label" >Ville</label> 
+                         <label class="col-md-4 control-label" >City</label> 
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${villev}" name="ville" placeholder="Ville" size="25"  type="text">
+                            <input value="${villev}" name="ville" placeholder="City" size="25"  type="text">
                             </div>
                         </div>
                     </div>            
@@ -152,31 +154,31 @@
                     </div>            
             
                     <div class="form-group">
-                         <label class="col-md-4 control-label" >Pays</label> 
+                         <label class="col-md-4 control-label" >Country</label> 
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${paysv}" name="pays" placeholder="Pays" size="25"  type="text">
+                            <input value="${paysv}" name="pays" placeholder="Country" size="25"  type="text">
                             </div>
                         </div>
                     </div>            
             
                     <div class="form-group">
-                         <label class="col-md-4 control-label" >Courriel</label> 
+                         <label class="col-md-4 control-label" >Email</label> 
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input value="${courrielv}" name="courriel" placeholder="Courriel - requis" size="25"  type="email" required >
+                            <input value="${courrielv}" name="courriel" placeholder="Email - required" size="25"  type="email" required >
                             </div>
                         </div>  
                     </div>            
     
                     <div class="form-group">
-                         <label class="col-md-4 control-label" >Mot de passe</label> 
+                         <label class="col-md-4 control-label" >Password</label> 
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${motdepassev}" name="motdepasse" placeholder="Mot de passe - requis" size="25"  type="password" required>
+                            <input value="${motdepassev}" name="motdepasse" placeholder="Password - required" size="25"  type="password" required>
                             </div>
                         </div>
                     </div>
@@ -195,3 +197,4 @@
             
     </body>
 </html>
+
