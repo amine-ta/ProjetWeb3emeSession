@@ -48,4 +48,10 @@ public class GestionnaireProduit
        
     }
     
+    public static List rechercherProduitParMarque(String marque)
+    {
+        return ProduitDAO.getProduitParMarque(marque);
+    }
+    
+    
 }

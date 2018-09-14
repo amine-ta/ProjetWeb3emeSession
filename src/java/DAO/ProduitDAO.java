@@ -58,6 +58,21 @@ public class ProduitDAO {
         return null;
     }
     
+    public static List<Produit> getProduitParMarque(String marque)
+    {
+        getOpenSession();
+        Query query = session.createQuery("SELECT * FROM Produit P JOIN Marque M "
+                                            + "ON (P.marque.idmarque = M.idmarque) "
+                                            + "WHERE UPPER(M.nom) = :NOMMARQUE ");
+        
+        query.setParameter("NOMMARQUE",marque);
+        List<Produit> results = query.list();
+        session.close();
+        return results;
+        
+        
+    }
+    
     public static void updateQteStock(Produit produit, Integer quantiteEnStock)
     {
         try
