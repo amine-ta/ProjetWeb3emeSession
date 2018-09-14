@@ -63,60 +63,64 @@
                         </div>
                     </div>
                 </div>            
-               
-            </div>                
-                    <div class="row">
-                    <form>                        
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <select class="form-control" id="sel1">
-                                    <option>Magasiner Par Marque</option>
-                                    <c:forEach var = "marque" items="${ListMarque}">
-                                        <option>${marque.nom}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <select class="form-control" id="sel1">
-                                    <option>Magasiner Par Catégorie</option>
-                                    <c:forEach var = "categorie" items="${ListCategorie}">
-                                        <option>${categorie.nomcategorie}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
 
+            </div>                
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <form action="detailProduit" methode="POST">   
+                            <select class="form-control" name ="marque" onchange="this.form.submit();">
+                                <option>Magasiner Par Marque</option>
+                                <c:forEach var = "marque" items="${ListMarque}">
+                                    <option>${marque.nom}</option>
+                                </c:forEach>
+
+                            </select>
+                        </form>    
                     </div>
-           <div class="row">
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <form action="detailProduit" methode="POST">  
+                            <select class="form-control" name="categorie" onchange="this.form.submit();">
+                                <option>Magasiner Par Catégorie</option>
+                                <c:forEach var = "categorie" items="${ListCategorie}">
+                                    <option>${categorie.nomcategorie}</option>
+                                </c:forEach>
+                            </select>
+                        </form> 
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
                 <c:forEach var = "produit" items="${ListPoduit}">
                     <div class="col-lg-3"> 
                         <div class="cellule grand">  
-                             <a href="detailProduit?id=${produit.idproduit}&action=detail"> 
+                            <a href="detailProduit?id=${produit.idproduit}&action=detail"> 
                                 <div class="image">
-                                       <img src="./images/${produit.image}" alt="Cinque Terre"/>
+                                    <img src="./images/${produit.image}" alt="Cinque Terre"/>
                                 </div>   
-                             </a>    
-                                     <hr>                                     
-                                <div class="description">                                
-                                                                   
-                                        <b id="prix">Prix :${produit.prix} $</b><br>                                 
-                                        <b style="color:${(produit.quantiteenstock <=0)?"RED" :"GREEN"}">État :${(produit.quantiteenstock <=0)?"Épuisé" :"Disponible"}</b>
-                             
-                                          <hr>
-                                        <form  action="ControPanier" method="post">  
-                                            <input type="hidden"  name="qteSaisie" value="1"  />  
-                                            <input type="hidden"  name="idItem" value="${produit.idproduit}"/>
-                                            <input type="hidden"  name="action" value="portail" />
-                                            <input type="${(produit.quantiteenstock <=0)?"HIDDEN" :"SUBMIT"}"  class="btn btn-info " value="Ajouter au panier" />
-                                        </form>                                     
-                                </div>
+                            </a>    
+                            <hr>                                     
+                            <div class="description">                                
+
+                                <b id="prix">Prix :${produit.prix} $</b><br>                                 
+                                <b style="color:${(produit.quantiteenstock <=0)?"RED" :"GREEN"}">État :${(produit.quantiteenstock <=0)?"Épuisé" :"Disponible"}</b>
+
+                                <hr>
+                                <form  action="ControPanier" method="post">  
+                                    <input type="hidden"  name="qteSaisie" value="1"  />  
+                                    <input type="hidden"  name="idItem" value="${produit.idproduit}"/>
+                                    <input type="hidden"  name="action" value="portail" />
+                                    <input type="${(produit.quantiteenstock <=0)?"HIDDEN" :"SUBMIT"}"  class="btn btn-info " value="Ajouter au panier" />
+                                </form>                                     
+                            </div>
                         </div>     
                     </div>  
                 </c:forEach>
             </div>
         </div>
-</body>
+    </body>
 </html>
