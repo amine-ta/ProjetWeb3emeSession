@@ -53,5 +53,9 @@ public class GestionnaireProduit
         return ProduitDAO.getProduitParMarque(marque);
     }
     
+    public static List rechercherProduitParCategorie(String categorie)
+    {
+        return ProduitDAO.getProduitParCategorie(categorie);
+    }
     
 }
