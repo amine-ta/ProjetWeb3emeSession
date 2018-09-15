@@ -16,6 +16,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 
 /**
  *
@@ -46,71 +47,63 @@ public class ProduitDAO {
     }
 
     public static Produit getSingleProduit(BigDecimal idproduit) {
-        try{
-        getOpenSession();
-        Query query = session.createQuery("FROM Produit P WHERE P.idproduit= :ClientID ");
-        query.setParameter("ClientID", idproduit);
+        try {
+            getOpenSession();
+            Query query = session.createQuery("FROM Produit P WHERE P.idproduit= :ClientID ");
+            query.setParameter("ClientID", idproduit);
 
-        Produit results = (Produit)query.uniqueResult();
-        return results;
-        }
-        catch(Exception e){
-        }
-        finally{
-        session.close();  
+            Produit results = (Produit) query.uniqueResult();
+            return results;
+        } catch (Exception e) {
+        } finally {
+            session.close();
         }
         return null;
     }
-    
-    public static List<Produit> getProduitParMarque()
-            { 
-            
-           Criteria criteria = session.createCriteria(Produit.class,"produit").createAlias("produit.marque","produ").add(Restrictions.eq("produit.nom", "Mutant"));
-            List list = criteria.list();
-           
-   
-//        getOpenSession();
-//        Query query = session.createQuery("FROM Produit P INNER JOIN P.marque M "
-//                                            + "WHERE M.nom = :NOMMARQUE ");
-//        
-//        query.setParameter("NOMMARQUE",marque);
-//        List<Produit> results = query.list();
-//        session.close();
-        return list;
-  
+
+    public static List getProduitParMarque(String nom) {
+
+        try {
+            getOpenSession();
+            Criteria criteria = session.createCriteria(Produit.class).createAlias("marque", "mar").add(Restrictions.eq("mar.nom", nom));
+            List produit = criteria.list();
+            return produit;
+        } catch (Exception ex) {
+
+        } finally {
+            session.close();
+        }
+        return null;
+
     }
-    
-    public static List<Produit> getProduitParCategorie(String categorie)
-    {
-        getOpenSession();
-        Query query = session.createQuery("FROM Produit P INNER JOIN P.categorie C "
-                                            + "WHERE C.nomcategorie = :NOMCATEGORIE ");
-        
-        query.setParameter("NOMCATEGORIE",categorie);
-        List<Produit> results = query.list();
-        session.close();
-        return results;
-  
+
+    public static List getProduitParCategorie(String categorie) {
+
+        try {
+            getOpenSession();
+            Criteria criteria = session.createCriteria(Produit.class).createAlias("categorie", "cat").add(Restrictions.eq("cat.nomcategorie", categorie));
+            List produit = criteria.list();
+            return produit;
+        } catch (Exception ex) {
+
+        } finally {
+            session.close();
+        }
+        return null;
+
     }
-    
-    public static void updateQteStock(Produit produit, Integer quantiteEnStock)
-    {
-        try
-        {
+
+    public static void updateQteStock(Produit produit, Integer quantiteEnStock) {
+        try {
             Transaction tx = OpenSessionWithTransaction();
             produit.setQuantiteenstock(quantiteEnStock);
             session.update(produit);
             tx.commit();
+        } catch (Exception e) {
+        } finally {
+            session.close();
         }
-        catch(Exception e){
-        }
-        finally{
-        session.close();  
-        }
-       
-       
-    }  
-    
-        
-    
+
+    }
+
 }

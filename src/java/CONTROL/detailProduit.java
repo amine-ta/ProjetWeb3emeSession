@@ -47,7 +47,9 @@ public class detailProduit extends HttpServlet {
         HttpSession session = request.getSession();
         
         action = request.getParameter("action");
-        String finProWithItems=request.getParameter("marque");
+        String Filtre=request.getParameter("Filtre");
+        String categorie=request.getParameter("categorie");
+        String marque=request.getParameter("marque");
     
   try{
       
@@ -61,12 +63,22 @@ public class detailProduit extends HttpServlet {
         }
         
   
-       if(finProWithItems!=null){
-           List LiProduit=GestionnaireProduit.rechercherProduitParMarque();
-            session.setAttribute("ListPoduit",LiProduit);
-            nextJSP = "/portail.jsp";
+       else if(Filtre!=null){
+           if(Filtre.equals("mar")){
+                List LiProduit=GestionnaireProduit.rechercherProduitParMarque(marque);
+               session.setAttribute("ListPoduit",LiProduit);
+                nextJSP = "/portail.jsp";
+           }
+           
+           else if(Filtre.equals("Cat")){
+                List LiProduit=GestionnaireProduit.rechercherProduitParCategorie(categorie);
+               session.setAttribute("ListPoduit",LiProduit);
+                nextJSP = "/portail.jsp";
+           }
            
        }
+       
+       
       
   }  catch(Exception e){
     

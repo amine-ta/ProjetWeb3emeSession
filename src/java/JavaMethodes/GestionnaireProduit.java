@@ -22,24 +22,28 @@ public class GestionnaireProduit
     public static Object rechercheUnProduit(String produitId)
     {
         Integer id = Integer.valueOf(produitId);
-        Produit pro = ProduitDAO.getSingleProduit(new BigDecimal(id));
-        
+        Produit pro = ProduitDAO.getSingleProduit(new BigDecimal(id));    
         return pro;
     }
     
     public static List rechercherTousProduits()
     {
-        return ProduitDAO.allProduit();
+        List produit =ProduitDAO.allProduit();
+        //util.HibernateUtil.getSessionFactory().close();
+        return produit;
     }
     
     public static List rechercherToutesMarques()
     {
-        return MarqueDAO.getAllMarque();
+        List marque = MarqueDAO.getAllMarque();
+       // util.HibernateUtil.getSessionFactory().close();
+        return marque;
     }
     
     public static List rechercherToutesCategories()
     {
-        return categorieDAO.getAllCategorie();
+        List categorie = categorieDAO.getAllCategorie();
+        return categorie;
     }
     
     public static void modifierQuantiteEnStockProduit(Produit produit, Integer qteEnStock)
@@ -48,14 +52,17 @@ public class GestionnaireProduit
        
     }
     
-    public static List rechercherProduitParMarque()
-    {
-        return ProduitDAO.getProduitParMarque();
+    public static List rechercherProduitParMarque(String _nomMarque)
+    {   List Produit =ProduitDAO.getProduitParMarque(_nomMarque);
+        //util.HibernateUtil.getSessionFactory().close();
+        return Produit;
     }
     
     public static List rechercherProduitParCategorie(String categorie)
     {
-        return ProduitDAO.getProduitParCategorie(categorie);
+        List Produit =ProduitDAO.getProduitParCategorie(categorie);
+       // util.HibernateUtil.getSessionFactory().close();
+        return Produit;
     }
     
 }

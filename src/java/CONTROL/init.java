@@ -42,6 +42,11 @@ public class init extends HttpServlet {
             throws ServletException, IOException {
  
 
+        LiCategorie.clear();
+        LiMarque.clear();
+        LiProduit.clear();
+        
+        
         application = request.getSession().getServletContext();
         LiCategorie = GestionnaireProduit.rechercherToutesCategories();
         LiMarque = GestionnaireProduit.rechercherToutesMarques();

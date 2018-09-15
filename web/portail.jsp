@@ -69,9 +69,11 @@
 
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <form action="detailProduit" methode="POST">   
-                            <select class="form-control" name ="marque" onchange="this.form.submit();">
+                        <form action="detailProduit" methode="POST" >   
+                             <input type="hidden"  name="Filtre" value="mar" />
+                            <select class="form-control" name="marque"  onchange="this.form.submit();">
                                 <option>Magasiner Par Marque</option>
+                               
                                 <c:forEach var = "marque" items="${ListMarque}">
                                     <option>${marque.nom}</option>
                                 </c:forEach>
@@ -83,8 +85,9 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <form action="detailProduit" methode="POST">  
+                            <input type="hidden"  name="Filtre" value="Cat" />
                             <select class="form-control" name="categorie" onchange="this.form.submit();">
-                                <option>Magasiner Par Catégorie</option>
+                                <option>Magasiner Par Catégorie</option>                             
                                 <c:forEach var = "categorie" items="${ListCategorie}">
                                     <option>${categorie.nomcategorie}</option>
                                 </c:forEach>
