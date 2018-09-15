@@ -71,7 +71,7 @@
                         </div> 
 
                     </form>     
-                    <form action="detailProduit" method="post">                          
+                    <form action="init" method="post">                          
                         <div class="col-lg-6"> 
                             <input type="hidden" name="action" value="SHOPPING"/>
                             <span><input type="submit" class="btn btn-info" value="Continuer magasinage" /></span>
@@ -84,7 +84,7 @@
                 <h4>Votre Panier est Vide</h4>
                 <div class="row">
                     <div class="col-lg-12"> 
-                        <form action="detailProduit" method="post">                          
+                        <form action="init" method="post">                          
                            
                                 <input type="hidden" name="action" value="SHOPPING"/>
                                 <span><input type="submit" class="btn btn-info" value="Continuer magasinage" /></span>
