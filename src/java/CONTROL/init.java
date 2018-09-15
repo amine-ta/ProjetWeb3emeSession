@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -42,19 +43,17 @@ public class init extends HttpServlet {
             throws ServletException, IOException {
  
 
-        LiCategorie.clear();
-        LiMarque.clear();
-        LiProduit.clear();
+
+    HttpSession session = request.getSession();
         
-        
-        application = request.getSession().getServletContext();
+      //  application = request.getSession().getServletContext();
         LiCategorie = GestionnaireProduit.rechercherToutesCategories();
         LiMarque = GestionnaireProduit.rechercherToutesMarques();
         LiProduit = GestionnaireProduit.rechercherTousProduits();
-        application.setAttribute("count", ControPanier.count);
-        application.setAttribute("ListPoduit", LiProduit);
-        application.setAttribute("ListMarque", LiMarque);
-        application.setAttribute("ListCategorie", LiCategorie);  
+        session.setAttribute("count", ControPanier.count);
+        session.setAttribute("ListPoduit", LiProduit);
+        session.setAttribute("ListMarque", LiMarque);
+        session.setAttribute("ListCategorie", LiCategorie);  
         
         nextJSP = "/portail.jsp";
         

@@ -33,17 +33,20 @@ public class ProduitDAO {
 
     private static Transaction OpenSessionWithTransaction() {
         getOpenSession();
-
         Transaction tx = session.beginTransaction();
         return tx;
     }
 
-    public static List<Produit> allProduit() {
-        getOpenSession();
-        Query query = session.createQuery(" from Produit");
-        List<Produit> results = query.list();
-        session.close();
-        return results;
+    public static List allProduit() {
+   
+            getOpenSession();
+            Query query = session.createQuery(" from Produit where ROWNUM <= 12");
+            List results = query.list();
+            
+     
+            session.close();
+            return results;
+
     }
 
     public static Produit getSingleProduit(BigDecimal idproduit) {
@@ -51,12 +54,12 @@ public class ProduitDAO {
             getOpenSession();
             Query query = session.createQuery("FROM Produit P WHERE P.idproduit= :ClientID ");
             query.setParameter("ClientID", idproduit);
-
             Produit results = (Produit) query.uniqueResult();
             return results;
         } catch (Exception e) {
         } finally {
             session.close();
+
         }
         return null;
     }
@@ -72,6 +75,7 @@ public class ProduitDAO {
 
         } finally {
             session.close();
+
         }
         return null;
 

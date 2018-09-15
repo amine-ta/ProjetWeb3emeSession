@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="#" style="font-family:Brush Script MT; color:red; font-size:30">Pro-Teins Tarh&Cia inc.</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="detailProduit">Home</a></li>
+      <li class="active"><a href="init">Home</a></li>
       <li><a href="portail.jsp">Français</a></li>
       <li><a href="portailEng.jsp">English</a></li>
     </ul>

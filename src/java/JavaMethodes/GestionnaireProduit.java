@@ -28,9 +28,10 @@ public class GestionnaireProduit
     
     public static List rechercherTousProduits()
     {
-        List produit =ProduitDAO.allProduit();
-        //util.HibernateUtil.getSessionFactory().close();
-        return produit;
+ 
+            List produit =ProduitDAO.allProduit(); 
+             return produit;
+
     }
     
     public static List rechercherToutesMarques()
