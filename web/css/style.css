@@ -4,8 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 28-Apr-2018, 6:44:04 PM
-    Author     : Moumene
+
 */
 body {
 	background-color : lightgray;
@@ -33,7 +32,6 @@ h4 {
 .grand {
     height : 350px;
     border : 1px solid lightgray;
-    border : 1px solid #ddd;
 }
 
 img{

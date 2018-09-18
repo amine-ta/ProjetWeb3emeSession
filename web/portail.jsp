@@ -99,7 +99,7 @@
             </div>
             <div class="row">
                 <c:forEach var = "produit" items="${ListPoduit}">
-                    <div class="col-lg-3"> 
+                    <div class="col-lg-3 col-md-4 col-sm-6 "> 
                         <div class="cellule grand">  
                             <a href="detailProduit?id=${produit.idproduit}&action=detail"> 
                                 <div class="image">
