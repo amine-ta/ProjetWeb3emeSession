@@ -6,11 +6,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
-    <head>
-         <title>Ventes de Protéines - Page Client</title>
+   
+   <head>
+        <title><fmt:message key="titre.pageclient"/></title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -30,9 +32,9 @@
                     
                     <form  class="well form-horizontal" name="ExistantClient" action="ControlClient" method="post">
   
-                     <center><h2><b>Je suis un Client Existant</b></h2></center><br>
+                     <center><h2><b><fmt:message key="connexion.titre"/></b></h2></center><br>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Courriel</label>  
+                        <label class="col-md-4 control-label"><fmt:message key ="connexion.Courriel"/></label>  
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
@@ -42,7 +44,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Mot de passe</label> 
+                        <label class="col-md-4 control-label" ><fmt:message key="connexion.mdp"/></label> 
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -55,12 +57,12 @@
                         <label class="col-md-4 control-label"></label>
                         <div class="col-md-4"><br>
                         <input type="hidden" name="action" value="CLIENTEXISIT"/>    
-                        <button type="submit" class="btn btn-warning" >OUVRIR SESSION<span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" class="btn btn-warning" ><fmt:message key="connexion.bouton"/><span class="glyphicon glyphicon-send"></span></button>
                         </div>
                     </div> 
                      
                     <h3>${MessageErreurLogin}</h3>
-                    <input name ="langue" value="francais" type="hidden"> 
+                     
                   
                     </form>    
                     </div>    
@@ -70,13 +72,13 @@
                  <div class="cellule droite">
                 <form  class="well form-horizontal" name="CreationClient" action="CreationClient" method="post">
   
-                     <center><h2><b>Je suis un nouveau Client</b></h2></center><br>
+                    <center><h2><b><fmt:message key="client.titre" /></b></h2></center><br>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Prénom</label>  
+                        <label class="col-md-4 control-label"><fmt:message key="client.prenom"/></label>  
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                             <input  value="${prenomv}" name="prenom" placeholder="Prénom - requis" size="25" type="text" required>
+                             <input  value="${prenomv}" name="prenom" size="25" type="text" required placeholder=<fmt:message key="client.requis"/>>
                             </div>
                         </div>
                     </div>
@@ -86,7 +88,7 @@
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${nomv}" name="nom" placeholder="Nom - requis " size="25"  type="text" required>
+                            <input value="${nomv}" name="nom" size="25"  type="text" required placeholder=<fmt:message key="client.requis"/>>
                         </div>
                         </div>
                     </div>
@@ -96,7 +98,7 @@
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input value="${telephonev}" name="telephone" placeholder="Téléphone" size="25"  >
+                            <input value="${telephonev}" name="telephone" size="25"  >
                             </div>
                         </div>
                     </div>
@@ -106,7 +108,7 @@
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${nociviquev}" name="nocivique" placeholder="Numéro Civique" size="25"  type="text">
+                            <input value="${nociviquev}" name="nocivique" size="25"  type="text">
                         </div>
                         </div>
                     </div>
@@ -116,7 +118,7 @@
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${noappv}" name="noapp" placeholder="Appartement" size="25"  type="text">
+                            <input value="${noappv}" name="noapp" size="25"  type="text">
                             </div>
                         </div>
                     </div>
@@ -126,7 +128,7 @@
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${ruev}" name="rue" placeholder="Rue" size="25"  type="text">
+                            <input value="${ruev}" name="rue"  size="25"  type="text">
                             </div>
                         </div>
                     </div>
@@ -136,7 +138,7 @@
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${villev}" name="ville" placeholder="Ville" size="25"  type="text">
+                            <input value="${villev}" name="ville" size="25"  type="text">
                             </div>
                         </div>
                     </div>            
@@ -146,7 +148,7 @@
                         <div class="col-md-4 inputGroupContainer">
                              <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${provincev}" name="province" placeholder="Province" size="25"  type="text">
+                            <input value="${provincev}" name="province" size="25"  type="text">
                             </div>
                         </div>
                     </div>            
@@ -156,7 +158,7 @@
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${paysv}" name="pays" placeholder="Pays" size="25"  type="text">
+                            <input value="${paysv}" name="pays" size="25"  type="text">
                             </div>
                         </div>
                     </div>            
@@ -166,7 +168,7 @@
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input value="${courrielv}" name="courriel" placeholder="Courriel - requis" size="25"  type="email" required >
+                            <input value="${courrielv}" name="courriel" size="25"  type="email" required placeholder=<fmt:message key="client.requis"/>>
                             </div>
                         </div>  
                     </div>            
@@ -176,7 +178,7 @@
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input value="${motdepassev}" name="motdepasse" placeholder="Mot de passe - requis" size="25"  type="password" required>
+                            <input value="${motdepassev}" name="motdepasse" size="25"  type="password" required placeholder=<fmt:message key="client.requis"/>>
                             </div>
                         </div>
                     </div>

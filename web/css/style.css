@@ -77,6 +77,7 @@ nav{
  
  .gauche   {
        float:left !important;
+       width:500px !important;
  }
  
  .droite   {

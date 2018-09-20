@@ -8,11 +8,16 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<fmt:setBundle basename="Langage"/>
+<fmt:setLocale value = "en_CA"/>
+
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title>Ventes protein</title>
+        <title>Vente/Sale</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -54,11 +59,11 @@
                             <!-- Left and right controls -->
                             <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
-                                <span class="sr-only">Previous</span>
+                                <span class="sr-only"><fmt:message key="Portail.Previous"/></span>
                             </a>
                             <a class="right carousel-control" href="#myCarousel" data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right"></span>
-                                <span class="sr-only">Next</span>
+                                <span class="sr-only"><fmt:message key="Portail.Next"/></span>
                             </a>
                         </div>
                     </div>
@@ -72,7 +77,7 @@
                         <form action="detailProduit" methode="POST" >   
                              <input type="hidden"  name="Filtre" value="mar" />
                             <select class="form-control" name="marque"  onchange="this.form.submit();">
-                                <option>Magasiner Par Marque</option>
+                                <option><fmt:message key="Portail.marque"/></option>
                                
                                 <c:forEach var = "marque" items="${ListMarque}">
                                     <option>${marque.nom}</option>
@@ -87,7 +92,7 @@
                         <form action="detailProduit" methode="POST">  
                             <input type="hidden"  name="Filtre" value="Cat" />
                             <select class="form-control" name="categorie" onchange="this.form.submit();">
-                                <option>Magasiner Par Catégorie</option>                             
+                                <option><fmt:message key="Portail.categorie"/></option>                             
                                 <c:forEach var = "categorie" items="${ListCategorie}">
                                     <option>${categorie.nomcategorie}</option>
                                 </c:forEach>
@@ -109,15 +114,15 @@
                             <hr>                                     
                             <div class="description">                                
 
-                                <b id="prix">Prix :${produit.prix} $</b><br>                                 
-                                <b style="color:${(produit.quantiteenstock <=0)?"RED" :"GREEN"}">État :${(produit.quantiteenstock <=0)?"Épuisé" :"Disponible"}</b>
+                                <b id="prix"><fmt:message key="Portail.Prix"/> :${produit.prix} $</b><br>                                 
+                                <b style="color:${(produit.quantiteenstock <=0)?"RED" :"GREEN"}"><fmt:message key="Portail.etat"/> :${(produit.quantiteenstock <=0)?"Épuisé" :"Disponible"}</b>
 
                                 <hr>
                                 <form  action="ControPanier" method="post">  
                                     <input type="hidden"  name="qteSaisie" value="1"  />  
                                     <input type="hidden"  name="idItem" value="${produit.idproduit}"/>
                                     <input type="hidden"  name="action" value="portail" />
-                                    <input type="${(produit.quantiteenstock <=0)?"HIDDEN" :"SUBMIT"}"  class="btn btn-info " value="Ajouter au panier" />
+                                    <input type="${(produit.quantiteenstock <=0)?"HIDDEN" :"SUBMIT"}"  class="btn btn-info " value=<fmt:message key="Portail.ajoutpanier"/> />
                                 </form>                                     
                             </div>
                         </div>     

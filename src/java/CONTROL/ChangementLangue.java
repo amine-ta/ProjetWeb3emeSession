@@ -5,13 +5,10 @@
  */
 package CONTROL;
 
-import JavaMethodes.GestionnaireProduit;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Locale;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,17 +17,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 1895088
+ * @author 1895040
  */
-public class init extends HttpServlet {
+public class ChangementLangue extends HttpServlet {
 
-    String nextJSP;
-    List LiCategorie;
-    List LiMarque;
-    List LiProduit;
-    ServletContext application ;
-    
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,30 +32,17 @@ public class init extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
-
-
-    HttpSession session = request.getSession();
         
-      //  application = request.getSession().getServletContext();
-        LiCategorie = GestionnaireProduit.rechercherToutesCategories();
-        LiMarque = GestionnaireProduit.rechercherToutesMarques();
-        LiProduit = GestionnaireProduit.rechercherTousProduits();
-        session.setAttribute("count", ControPanier.count);
-        session.setAttribute("ListPoduit", LiProduit);
-        session.setAttribute("ListMarque", LiMarque);
-        session.setAttribute("ListCategorie", LiCategorie);  
+        HttpSession session = request.getSession();
+       
+        String language = request.getParameter("language");
         
-        nextJSP = "/portail.jsp";
-        
-        //Locale localeReq = request.getLocale();
-        
-        //session.setAttribute("langue", localeReq.getLanguage());
+        session.setAttribute("langue", language);
+        String nextJSP = "/portail.jsp";
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request, response);
-       
-}
+        }
     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

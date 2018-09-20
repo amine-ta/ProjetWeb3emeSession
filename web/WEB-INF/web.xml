@@ -48,6 +48,10 @@
         <servlet-name>init</servlet-name>
         <servlet-class>CONTROL.init</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangementLangue</servlet-name>
+        <servlet-class>CONTROL.ChangementLangue</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>detailProduit</servlet-name>
         <url-pattern>/detailProduit</url-pattern>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>init</servlet-name>
         <url-pattern>/init</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangementLangue</servlet-name>
+        <url-pattern>/ChangementLangue</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
