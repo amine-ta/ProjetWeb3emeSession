@@ -17,6 +17,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,23 +40,31 @@ public class AuthentificationClientExistant implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
   
+        
+        
         String motDePasseLogin = request.getParameter("logincourriel");
-        String langue = request.getParameter("langue");
+        String langue = (String)request.getAttribute("langueCourante");
         
         String MessageErreurConnexion,MessageErreurMotDePasse,PageJSP;
         
-        if (langue.equalsIgnoreCase("english"))
+        if (langue.equalsIgnoreCase("en_CA"))
         {
             MessageErreurConnexion = "The email does not exist";
             MessageErreurMotDePasse = "Invalid password entered";
-            PageJSP = "/PageClientEng.jsp";
+            PageJSP = "/PageClient.jsp";
         }
-        else
+        else if (langue.equalsIgnoreCase("fr_CA"))
         {
             MessageErreurConnexion = "Le courriel n'existe pas";
             MessageErreurMotDePasse = "Le mot de passe est invalide";
             PageJSP = "/PageClient.jsp";
         }
+        else
+        {
+            MessageErreurConnexion = "L'e-mail non esiste";
+            MessageErreurMotDePasse = "La chiave d'accesso non è valida";
+            PageJSP = "/PageClient.jsp";
+        }    
         
         // Si le courriel n'existe pas dans la base de donnée, alors le client est inexistant!!
         if(!GestionnaireClient.rechercherCourriel(motDePasseLogin))

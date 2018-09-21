@@ -10,8 +10,9 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<fmt:setLocale value = "${sessionScope.langueCourante}"/>
 <fmt:setBundle basename="Langage"/>
-<fmt:setLocale value = "en_CA"/>
+
 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -115,7 +116,7 @@
                             <div class="description">                                
 
                                 <b id="prix"><fmt:message key="Portail.Prix"/> :${produit.prix} $</b><br>                                 
-                                <b style="color:${(produit.quantiteenstock <=0)?"RED" :"GREEN"}"><fmt:message key="Portail.etat"/> :${(produit.quantiteenstock <=0)?"Épuisé" :"Disponible"}</b>
+                                <b style="color:${(produit.quantiteenstock <=0)?"RED" :"GREEN"}"><fmt:message key="Portail.etat"/> :${(produit.quantiteenstock <=0)? motEpuise : motDispo}</b>
 
                                 <hr>
                                 <form  action="ControPanier" method="post">  

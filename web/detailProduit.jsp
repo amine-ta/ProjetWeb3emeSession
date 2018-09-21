@@ -6,6 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<fmt:setLocale value = "${sessionScope.langueCourante}"/>
+<fmt:setBundle basename="Langage"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,35 +36,35 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2>Marque</h2>
+                            <h2><fmt:message key="detail.marque"/></h2>
                             <p>${detailProduit.marque.nom}</p>
                             <hr>
                         </div>  
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2>Nom Produit</h2>
+                            <h2><fmt:message key="detail.nom"/></h2>
                             <p>${detailProduit.nomproduit}</p>
                             <hr>
                         </div>  
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2>Catégorie</h2>
+                            <h2><fmt:message key="detail.categorie"/></h2>
                             <p>${detailProduit.categorie.nomcategorie}</p>
                             <hr>
                         </div>  
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2>Quantité En Stock</h2>
+                            <h2><fmt:message key="detail.qtestk"/></h2>
                             <p>${detailProduit.quantiteenstock}</p>
                             <hr>
                         </div>  
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2>Format</h2>
+                            <h2><fmt:message key="detail.format"/></h2>
                             <p>${detailProduit.formatpro}</p>   
                             <br>
                             <hr>
@@ -68,7 +72,7 @@
                     </div>    
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2>Prix</h2>
+                            <h2><fmt:message key="detail.prix"/></h2>
                             <p>${detailProduit.prix} $</p>   
                             <br>
                             <hr>
@@ -78,14 +82,14 @@
                         <div class="col-lg-12">
                             <form name="ADDFORM" action="ControPanier" method="POST">
                                 <div class="col-sm-6">
-                                    <label id="qte">Quantité:  </label>
+                                    <label id="qte"><fmt:message key="detail.qte"/>:  </label>
                                     <input type="${(detailProduit.quantiteenstock <=0)? "hidden" :"text"}"  name="qteSaisie" value="1"  />                                 
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="hidden"  name="idItem" value="${detailProduit.idproduit}"/>
                                     <input type="hidden"  name="action" value="ADD" />
-                                    <input type="${(detailProduit.quantiteenstock <=0)? "HIDDEN" :"SUBMIT"}" class="btn btn-info " value="AJOUTER AU PANIER" />
-                                    ${MessageErreurQteEnStockProd}
+                                    <input type="${(detailProduit.quantiteenstock <=0)? "HIDDEN" :"SUBMIT"}" class="btn btn-info " value=<fmt:message key="detail.bouton"/> />
+                                    <h4 style="color:red"> ${MessageErreurQteEnStockProd}</h4>
                                 </div>
                                 <hr>    
 
@@ -95,7 +99,7 @@
                     <div class="row">
                         <div class="col-lg-12">                           
                             <div class="col-lg-12">
-                                <h2>Description</h2>
+                                <h2><fmt:message key="detail.desc"/></h2>
                                 <p>${detailProduit.descriptionFr}</p>                              
                             </div>                                                      
                         </div>

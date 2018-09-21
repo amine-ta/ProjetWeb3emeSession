@@ -8,6 +8,9 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<fmt:setLocale value = "${sessionScope.langueCourante}"/>
+<fmt:setBundle basename="Langage"/>
+
 <!DOCTYPE html>
 <html>
    
@@ -62,9 +65,7 @@
                     </div> 
                      
                     <h3>${MessageErreurLogin}</h3>
-                     
-                  
-                    </form>    
+                </form>    
                     </div>    
                 </div>
                 
@@ -84,7 +85,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Nom</label> 
+                        <label class="col-md-4 control-label" ><fmt:message key="client.nom"/></label> 
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -94,7 +95,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Téléphone</label> 
+                        <label class="col-md-4 control-label" ><fmt:message key="client.telephone"/></label> 
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
@@ -104,7 +105,7 @@
                     </div>
             
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Numéro civique</label> 
+                        <label class="col-md-4 control-label" ><fmt:message key="client.civique"/></label> 
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -114,7 +115,7 @@
                     </div>
             
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Appartement</label> 
+                        <label class="col-md-4 control-label" ><fmt:message key="client.app"/></label> 
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -124,7 +125,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Rue</label> 
+                        <label class="col-md-4 control-label" ><fmt:message key="client.rue"/></label> 
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -134,7 +135,7 @@
                     </div>
 
                     <div class="form-group">
-                         <label class="col-md-4 control-label" >Ville</label> 
+                         <label class="col-md-4 control-label" ><fmt:message key="client.ville"/></label> 
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -144,7 +145,7 @@
                     </div>            
             
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Province</label> 
+                        <label class="col-md-4 control-label" ><fmt:message key="client.province"/></label> 
                         <div class="col-md-4 inputGroupContainer">
                              <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -154,7 +155,7 @@
                     </div>            
             
                     <div class="form-group">
-                         <label class="col-md-4 control-label" >Pays</label> 
+                         <label class="col-md-4 control-label" ><fmt:message key="client.pays"/></label> 
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -164,7 +165,7 @@
                     </div>            
             
                     <div class="form-group">
-                         <label class="col-md-4 control-label" >Courriel</label> 
+                         <label class="col-md-4 control-label" ><fmt:message key="client.courriel"/></label> 
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
@@ -174,7 +175,7 @@
                     </div>            
     
                     <div class="form-group">
-                         <label class="col-md-4 control-label" >Mot de passe</label> 
+                         <label class="col-md-4 control-label" ><fmt:message key="client.mdp"/></label> 
                          <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -186,7 +187,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label"></label>
                         <div class="col-md-4"><br>
-                        <button type="submit" class="btn btn-warning" >INSCRIPTION<span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" class="btn btn-warning" ><fmt:message key="client.bouton"/><span class="glyphicon glyphicon-send"></span></button>
                         </div>
                     </div>
                     <h3>${MessageErreurCourriel}</h3> 

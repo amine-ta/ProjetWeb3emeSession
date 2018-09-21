@@ -34,10 +34,29 @@ public class ChangementLangue extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
+        
+       // System.out.println("getLocalAddr : " + request.
        
         String language = request.getParameter("language");
         
-        session.setAttribute("langue", language);
+        session.setAttribute("langueCourante", language);
+        if (language.equalsIgnoreCase("fr_CA"))
+        {
+            session.setAttribute("motEpuise","Épuisé");
+            session.setAttribute("motDispo","Disponible");
+        }
+        else if (language.equalsIgnoreCase("en_CA"))
+         {
+            session.setAttribute("motEpuise","Out of Stock");
+            session.setAttribute("motDispo","Available");
+         }
+        else
+       {
+            session.setAttribute("motEpuise","Esaurito");
+            session.setAttribute("motDispo","Disponibile");
+         }     
+        
+        
         String nextJSP = "/portail.jsp";
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);

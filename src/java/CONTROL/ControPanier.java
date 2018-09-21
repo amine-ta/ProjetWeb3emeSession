@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Vector;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -44,8 +45,26 @@ public class ControPanier extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        
-       BigDecimal montantTotal;
+       
+        BigDecimal montantTotal;
+       
+       String msgErreurQteStk="";
+       String langue="";
+       
+       langue = (String)session.getAttribute("langueCourante");
+       
+       if (langue != null)
+       {    
+           if (langue.equalsIgnoreCase("en_CA"))
+               msgErreurQteStk = "The quantity in stock is insufficient";
+           else if (langue.equalsIgnoreCase("fr_CA"))
+               msgErreurQteStk = "La quantité en stock est insuffisante";
+           else
+               msgErreurQteStk = "La quantità in magazzino è insufficiente";
+       }
+       else
+               msgErreurQteStk = "La quantité en stock est insuffisante";
+       
         
         if (session == null) {
             response.sendRedirect("erreur.jsp");
@@ -109,7 +128,7 @@ public class ControPanier extends HttpServlet {
               }
               else
                 {
-                    request.setAttribute("MessageErreurQteEnStockProd","La quantité en stock est insuffisante");
+                    request.setAttribute("MessageErreurQteEnStockProd",msgErreurQteStk);
                     url = "/detailProduit.jsp";
                 }
             }
