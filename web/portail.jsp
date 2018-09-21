@@ -10,7 +10,12 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<fmt:setLocale value = "${sessionScope.langueCourante}"/>
+<c:set var="loc" value="fr_CA"/>
+<c:if test="${!(empty sessionScope.langueCourante)}">
+  <c:set var="loc" value="${sessionScope.langueCourante}"/>
+</c:if>
+
+<fmt:setLocale value = "${loc}"/>
 <fmt:setBundle basename="Langage"/>
 
 
@@ -129,6 +134,7 @@
                         </div>     
                     </div>  
                 </c:forEach>
+                <input type="hidden" var="pageJSP" value="portail.jsp"/>
             </div>
         </div>
     </body>

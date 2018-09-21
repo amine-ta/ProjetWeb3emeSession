@@ -2,7 +2,13 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<fmt:setLocale value = "${sessionScope.langueCourante}"/>
+
+<c:set var="loc" value="fr_CA"/>
+<c:if test="${!(empty sessionScope.langueCourante)}">
+  <c:set var="loc" value="${sessionScope.langueCourante}"/>
+</c:if>
+
+<fmt:setLocale value = "${loc}"/>
 <fmt:setBundle basename="Langage"/>
 
 <nav class="navbar navbar-inverse">
@@ -18,6 +24,7 @@
         <li><a href="ChangementLangue?language=fr_CA">Français</a></li>
         <li><a href="ChangementLangue?language=en_CA">English</a></li>
         <li><a href="ChangementLangue?language=it_IT">Italiano</a></li>
+        <input type="hidden" name="pageJSPRetour" value="NavBarre.jsp"/>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">

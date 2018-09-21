@@ -58,9 +58,33 @@ public class init extends HttpServlet {
         
         nextJSP = "/portail.jsp";
         
-        //Locale localeReq = request.getLocale();
-        
-        //session.setAttribute("langue", localeReq.getLanguage());
+         String language = request.getParameter("language");
+         
+         
+        if (language != null)
+        {    
+            session.setAttribute("langueCourante", language);
+            if (language.equalsIgnoreCase("fr_CA"))
+            {
+                session.setAttribute("motEpuise","Épuisé");
+                session.setAttribute("motDispo","Disponible");
+            }
+            else if (language.equalsIgnoreCase("en_CA"))
+            {
+                session.setAttribute("motEpuise","Out of Stock");
+                session.setAttribute("motDispo","Available");
+            }
+            else
+            {
+                session.setAttribute("motEpuise","Esaurito");
+                session.setAttribute("motDispo","Disponibile");
+            } 
+        }
+        else // Mettre la langue par défaut à "fr_CA"
+        {
+            session.setAttribute("motEpuise","Épuisé");
+            session.setAttribute("motDispo","Disponible");
+        }    
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request, response);

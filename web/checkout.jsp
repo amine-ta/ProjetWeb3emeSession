@@ -71,6 +71,7 @@
         <form action="detailProduit" method="post">                          
             <div class="col-lg-12"> 
                 <input type="hidden" name="action" value="SHOPPING"/>
+                <input type="hidden" name="pageJSP" value="checkout.jsp"/>
                 <span><input type="submit" class="btn btn-info" value="Continue Shopping" /></span>
             </div>  
         </form> 
