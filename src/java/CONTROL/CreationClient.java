@@ -9,6 +9,7 @@ import JavaMethodes.GestionnaireClient;
 import entite.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Vector;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,7 @@ public class CreationClient extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-       // HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
             
         String prenom = request.getParameter("prenom");
         String nom = request.getParameter("nom");
@@ -52,9 +53,15 @@ public class CreationClient extends HttpServlet {
        
         request.setAttribute("nouveauclientnom", nom);
         request.setAttribute("nouveauclientprenom", prenom);
-        String nextJSP = "/PageTempoNouvClient.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        String nextJSP = "/checkout.jsp";
+        
+        Vector buylist = (Vector) session.getAttribute("shoppingcart");
+         session.setAttribute("shoppingcart", buylist);
+         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request, response);
+        
+        
+        
         
     }
 

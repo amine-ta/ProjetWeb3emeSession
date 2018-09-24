@@ -43,7 +43,7 @@ public class AuthentificationNouveauClient implements Filter {
      
         boolean courrieltrouve = false;
         String courriel = request.getParameter("courriel");
-        
+        String langue = request.getParameter("languecourr");
         
         
         courrieltrouve = GestionnaireClient.rechercherCourriel(courriel);
@@ -59,8 +59,13 @@ public class AuthentificationNouveauClient implements Filter {
             request.setAttribute("provincev",request.getParameter("province"));
             request.setAttribute("paysv",request.getParameter("pays"));
             
+            if (langue.equalsIgnoreCase("fr_CA"))
+                request.setAttribute("MessageErreurCourriel", "Un client avec ce courriel existe déjà");
+            else if (langue.equalsIgnoreCase("en_CA"))
+                request.setAttribute("MessageErreurCourriel", "Uno cliente con questa e-mail esiste già");
+            else
+                request.setAttribute("MessageErreurCourriel", "A client with this email already exists");
             
-            request.setAttribute("MessageErreurCourriel", "Un client avec ce courriel existe déjà");
             RequestDispatcher rd = request.getRequestDispatcher("/PageClient.jsp");
             rd.forward(request, response);
         }

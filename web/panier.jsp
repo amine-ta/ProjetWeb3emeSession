@@ -91,8 +91,7 @@
                         <form action="init" method="post">                          
                            
                                 <input type="hidden" name="action" value="SHOPPING"/>
-                                <input type="hidden" name="pageJSP" value="panier.jsp"/>
-                                <span><input type="submit" class="btn btn-info" value=<fmt:message key="panier.btncontinuer"/> /></span>
+                                 <span><input type="submit" class="btn btn-info" value=<fmt:message key="panier.btncontinuer"/> /></span>
                              
                         </form> 
                     </div>  

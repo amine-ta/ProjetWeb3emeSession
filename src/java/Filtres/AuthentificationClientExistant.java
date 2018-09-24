@@ -43,27 +43,27 @@ public class AuthentificationClientExistant implements Filter {
         
         
         String motDePasseLogin = request.getParameter("logincourriel");
-        String langue = (String)request.getAttribute("langueCourante");
+        String langue = request.getParameter("languecourr");
         
         String MessageErreurConnexion,MessageErreurMotDePasse,PageJSP;
-        
+        PageJSP = "/PageClient.jsp";
         if (langue.equalsIgnoreCase("en_CA"))
         {
             MessageErreurConnexion = "The email does not exist";
             MessageErreurMotDePasse = "Invalid password entered";
-            PageJSP = "/PageClient.jsp";
+            
         }
         else if (langue.equalsIgnoreCase("fr_CA"))
         {
             MessageErreurConnexion = "Le courriel n'existe pas";
             MessageErreurMotDePasse = "Le mot de passe est invalide";
-            PageJSP = "/PageClient.jsp";
+            
         }
         else
         {
             MessageErreurConnexion = "L'e-mail non esiste";
             MessageErreurMotDePasse = "La chiave d'accesso non è valida";
-            PageJSP = "/PageClient.jsp";
+            
         }    
         
         // Si le courriel n'existe pas dans la base de donnée, alors le client est inexistant!!

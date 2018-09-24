@@ -89,8 +89,7 @@
                                     <input type="hidden"  name="idItem" value="${detailProduit.idproduit}"/>
                                     <input type="hidden"  name="action" value="ADD" />
                                     <input type="${(detailProduit.quantiteenstock <=0)? "HIDDEN" :"SUBMIT"}" class="btn btn-info " value=<fmt:message key="detail.bouton"/> />
-                                    <input type="hidden" name="pageJSP" value="detailProduit.jsp"/>
-                                    <h4 style="color:red"> ${MessageErreurQteEnStockProd}</h4>
+                                     <h4 style="color:red"> ${MessageErreurQteEnStockProd}</h4>
                                 </div>
                                 <hr>    
 

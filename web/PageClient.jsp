@@ -42,6 +42,7 @@
                             <div class="input-group">
                              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                              <input  value="${logincourrielv}" name="logincourriel" size="23" type="email">
+                             <input  type="hidden" name="languecourr" value="${sessionScope.langueCourante}"/>
                             </div>
                         </div>
                     </div>
@@ -60,7 +61,6 @@
                         <label class="col-md-4 control-label"></label>
                         <div class="col-md-4"><br>
                         <input type="hidden" name="action" value="CLIENTEXISIT"/> 
-                        <input type="hidden" name="pageJSP" value="PageClient.jsp"/>
                         <button type="submit" class="btn btn-warning" ><fmt:message key="connexion.bouton"/><span class="glyphicon glyphicon-send"></span></button>
                         </div>
                     </div> 

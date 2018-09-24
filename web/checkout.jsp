@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <jsp:include page="NavBarre.jsp"/>
+    <jsp:include page="NavBarreCheckout.jsp"/>
 
     <div class="container"> 
         <c:choose>
@@ -31,11 +31,11 @@
                         <center>
                             <table border="0" class="table table-hover" width="100%" >
                                 <tr>
-                                    <td><b>Nom produit</b></td>
-                                    <td><b>Marque produit</b></td>                               
-                                    <td><b>Format</b></td>
-                                    <td><b>Quantité</b></td>
-                                    <td><b>Prix ($)</b></td>
+                                    <td><b><fmt:message key="checkout.nom"/></b></td>
+                                    <td><b><fmt:message key="checkout.marque"/></b></td>                               
+                                    <td><b><fmt:message key="checkout.format"/></b></td>
+                                    <td><b><fmt:message key="checkout.qte"/></b></td>
+                                    <td><b><fmt:message key="checkout.prix"/>($)</b></td>
                                     <td><b></b></td>
                                 </tr>
 
@@ -54,7 +54,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td><b>Total :</b></td>
+                                    <td><b><fmt:message key="checkout.total"/> :</b></td>
                                     <td><b>${amount}</b></td>
                                 </tr>
                             </table>
@@ -65,14 +65,13 @@
 
             </c:when>
             <c:otherwise>
-                <h4>Votre Panier est Vide</h4>
+                <h4><fmt:message key="checkout.message"/></h4>
             </c:otherwise>
         </c:choose>      
         <form action="detailProduit" method="post">                          
             <div class="col-lg-12"> 
                 <input type="hidden" name="action" value="SHOPPING"/>
-                <input type="hidden" name="pageJSP" value="checkout.jsp"/>
-                <span><input type="submit" class="btn btn-info" value="Continue Shopping" /></span>
+                <span><input type="submit" class="btn btn-info" value=<fmt:message key="checkout.bouton"/> /></span>
             </div>  
         </form> 
 

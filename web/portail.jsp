@@ -11,6 +11,7 @@
 <%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <c:set var="loc" value="fr_CA"/>
+
 <c:if test="${!(empty sessionScope.langueCourante)}">
   <c:set var="loc" value="${sessionScope.langueCourante}"/>
 </c:if>
@@ -35,8 +36,9 @@
     </head>
     <body>
         <jsp:include page="NavBarre.jsp"/>
-        <div class="container">      
-            <div class="row">
+        
+        <div class="container">
+             <div class="row">
                 <div class="col-lg-12">
                     <div id="main" class="cellule grand">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -134,7 +136,6 @@
                         </div>     
                     </div>  
                 </c:forEach>
-                <input type="hidden" var="pageJSP" value="portail.jsp"/>
             </div>
         </div>
     </body>

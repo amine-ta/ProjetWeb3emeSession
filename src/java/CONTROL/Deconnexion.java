@@ -7,8 +7,6 @@ package CONTROL;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
-import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,9 +16,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 1895040
+ * @author gcia_
  */
-public class ChangementLangue extends HttpServlet {
+public class Deconnexion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,39 +32,38 @@ public class ChangementLangue extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
         HttpSession session = request.getSession();
-             
-        String language = request.getParameter("language");
-        
+        String language = request.getParameter("languecourr");
+        String messageDeconnexion = "";
         String nextJSP;
-        
-        //nextJSP = request.getParameter("pageJSP");
-        
-        nextJSP = "/portail.jsp";
+        nextJSP = "/DeconnClient.jsp";
                       
         session.setAttribute("langueCourante", language);
         
         if (language.equalsIgnoreCase("fr_CA"))
         {
-            session.setAttribute("motEpuise","Épuisé");
-            session.setAttribute("motDispo","Disponible");
+            messageDeconnexion = "Vous avez été déconnecté.  Merci d'avoir magasiné chez Pro-Vita Tarh&Cia inc.\n";
+            messageDeconnexion = messageDeconnexion + "Bonne journée!";
         }
         else if (language.equalsIgnoreCase("en_CA"))
          {
-            session.setAttribute("motEpuise","Out of Stock");
-            session.setAttribute("motDispo","Available");
+            messageDeconnexion = "You have been log out.  Thanks having shopped at Pro-Vita Tarh&Cia inc. \n";
+            messageDeconnexion = messageDeconnexion + "Have a nice day!";
          }
         else
        {
-            session.setAttribute("motEpuise","Esaurito");
-            session.setAttribute("motDispo","Disponibile");
+            messageDeconnexion = "Avete stato disconnesso.  Grazie per avere acquistato su Pro-Vita Tarh&Cia inc.\n";
+            messageDeconnexion = messageDeconnexion + "Buona Giornata!";
          }     
         
+        request.setAttribute("MessageDeconnexion", messageDeconnexion);
      
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request, response);
-        }
+        
     
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
