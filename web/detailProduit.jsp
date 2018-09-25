@@ -23,7 +23,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <jsp:include page="NavBarre.jsp"/>
+      
+       <%@ include file="NavBarre.jsp" %>
+
         <div class="container"> 
             <div class="row">
                 <div class="col-sm-6">

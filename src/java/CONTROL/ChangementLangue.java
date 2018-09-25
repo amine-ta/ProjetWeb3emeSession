@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author 1895040
  */
 public class ChangementLangue extends HttpServlet {
-
+String nextJSP;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,12 +37,14 @@ public class ChangementLangue extends HttpServlet {
         HttpSession session = request.getSession();
              
         String language = request.getParameter("language");
+        nextJSP= (String)session.getAttribute("PageCourante");
         
-        String nextJSP;
+        
+        
         
         //nextJSP = request.getParameter("pageJSP");
         
-        nextJSP = "/portail.jsp";
+    
                       
         session.setAttribute("langueCourante", language);
         

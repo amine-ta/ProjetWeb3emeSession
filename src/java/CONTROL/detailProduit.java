@@ -57,7 +57,7 @@ public class detailProduit extends HttpServlet {
         {
            String idProduit = request.getParameter("id");
            Object obj = GestionnaireProduit.rechercheUnProduit(idProduit);
-
+            session.setAttribute("PageCourante","/detailProduit.jsp");
             session.setAttribute("detailProduit",obj );
             nextJSP = "/detailProduit.jsp";
         }
@@ -67,12 +67,14 @@ public class detailProduit extends HttpServlet {
            if(Filtre.equals("mar")){
                 List LiProduit=GestionnaireProduit.rechercherProduitParMarque(marque);
                session.setAttribute("ListPoduit",LiProduit);
+               session.setAttribute("PageCourante","/portail.jsp");
                 nextJSP = "/portail.jsp";
            }
            
            else if(Filtre.equals("Cat")){
                 List LiProduit=GestionnaireProduit.rechercherProduitParCategorie(categorie);
-               session.setAttribute("ListPoduit",LiProduit);
+                session.setAttribute("ListPoduit",LiProduit);
+                session.setAttribute("PageCourante","/portail.jsp");
                 nextJSP = "/portail.jsp";
            }
            

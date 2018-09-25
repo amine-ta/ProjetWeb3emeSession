@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  * @author Mohamed Amine Tarhouni et Gian Gabriele Ciampa
  */
 public class CreationClient extends HttpServlet {
-
+String nextJSP ;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -53,7 +53,8 @@ public class CreationClient extends HttpServlet {
        
         request.setAttribute("nouveauclientnom", nom);
         request.setAttribute("nouveauclientprenom", prenom);
-        String nextJSP = "/checkout.jsp";
+        session.setAttribute("PageCourante","/checkout.jsp");
+        nextJSP = "/checkout.jsp";       
         
         Vector buylist = (Vector) session.getAttribute("shoppingcart");
          session.setAttribute("shoppingcart", buylist);

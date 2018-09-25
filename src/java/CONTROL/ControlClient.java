@@ -35,8 +35,9 @@ public class ControlClient extends HttpServlet {
          HttpSession session = request.getSession();
          Vector buylist = (Vector) session.getAttribute("shoppingcart");
          session.setAttribute("shoppingcart", buylist);
+         session.setAttribute("PageCourante","/checkout.jsp");
          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/checkout.jsp");
-        dispatcher.forward(request, response);
+         dispatcher.forward(request, response);
     
     }
 

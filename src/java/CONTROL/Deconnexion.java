@@ -56,7 +56,7 @@ public class Deconnexion extends HttpServlet {
             messageDeconnexion = "Avete stato disconnesso.  Grazie per avere acquistato su Pro-Vita Tarh&Cia inc.\n";
             messageDeconnexion = messageDeconnexion + "Buona Giornata!";
          }     
-        
+        session.invalidate();
         request.setAttribute("MessageDeconnexion", messageDeconnexion);
      
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);

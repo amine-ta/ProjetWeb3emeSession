@@ -23,6 +23,7 @@
       
         <li><a href="ChangementLangue?language=fr_CA">Français</a></li>
         <li><a href="ChangementLangue?language=en_CA">English</a></li>
+      
         <li><a href="ChangementLangue?language=it_IT">Italiano</a></li>
     </ul>
     

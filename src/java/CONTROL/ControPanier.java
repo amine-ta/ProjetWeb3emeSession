@@ -121,27 +121,33 @@ public class ControPanier extends HttpServlet {
                   
                 if(action.equals("ADD")){
                     url = "/detailProduit.jsp";
+                    session.setAttribute("PageCourante","/detailProduit.jsp");
                 }
                 if(action.equals("portail")){
+                    session.setAttribute("PageCourante","/portail.jsp");
                     url = "/portail.jsp";
                 }
               }
               else
                 {
                     request.setAttribute("MessageErreurQteEnStockProd",msgErreurQteStk);
+                    session.setAttribute("PageCourante","/detailProduit.jsp");
                     url = "/detailProduit.jsp";
                 }
             }
          
             else if(action.equals("cart")){
                  session.setAttribute("count", count);
-
-                 
+                 session.setAttribute("PageCourante","/panier.jsp");
                  url = "/panier.jsp";
               }
             
             else if(action.equals("DELETE")){
                        count--;
+                       
+                       
+                       
+                       
                        String del = request.getParameter("delindex");
                         
                         Integer id = Integer.valueOf(del);
@@ -154,11 +160,10 @@ public class ControPanier extends HttpServlet {
       
         }
         else if(action.equals("CHECKOUT")){
+            session.setAttribute("PageCourante","/PageClient.jsp");
             url = "/PageClient.jsp";
         }
-            
-         
-                 session.setAttribute("shoppingcart", buylist);
+                session.setAttribute("shoppingcart", buylist);
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
                 rd.forward(request, response);

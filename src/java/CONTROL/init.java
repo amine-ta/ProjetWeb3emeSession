@@ -57,6 +57,7 @@ public class init extends HttpServlet {
         session.setAttribute("ListCategorie", LiCategorie);  
         
         nextJSP = "/portail.jsp";
+        session.setAttribute("PageCourante","/portail.jsp");
         
          String language = request.getParameter("language");
          
