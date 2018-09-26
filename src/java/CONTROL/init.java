@@ -58,8 +58,9 @@ public class init extends HttpServlet {
         
         nextJSP = "/portail.jsp";
         session.setAttribute("PageCourante","/portail.jsp");
+        String language = request.getParameter("language");
         
-         String language = request.getParameter("language");
+      
          
          
         if (language != null)

@@ -50,6 +50,7 @@ public class detailProduit extends HttpServlet {
         String Filtre=request.getParameter("Filtre");
         String categorie=request.getParameter("categorie");
         String marque=request.getParameter("marque");
+        
     
   try{
       

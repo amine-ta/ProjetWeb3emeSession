@@ -23,10 +23,10 @@
 
 </head>
 
-<body>
+<body class="container">
     <jsp:include page="NavBarre.jsp"/>
 
-    <div class="container"> 
+    <div> 
         <c:choose>
             <c:when test="${shoppingcart != null  && shoppingcart.size() > 0 }">
                 <div class="row">
