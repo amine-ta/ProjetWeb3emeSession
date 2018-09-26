@@ -6,8 +6,10 @@
 package CONTROL;
 
 import JavaMethodes.GestionnaireProduit;
+import entite.Produit;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import javax.servlet.RequestDispatcher;
@@ -59,8 +61,17 @@ public class init extends HttpServlet {
         nextJSP = "/portail.jsp";
         session.setAttribute("PageCourante","/portail.jsp");
         String language = request.getParameter("language");
+        List<Produit> ALlProduit =new ArrayList();
+        List<String> AllNameProduit=new ArrayList<>();
         
-      
+        ALlProduit = GestionnaireProduit.rechercherTousProduits();
+        
+        for(Produit nom :ALlProduit){
+             AllNameProduit.add(nom.getNomproduit());
+        }
+              
+        
+        
          
          
         if (language != null)
