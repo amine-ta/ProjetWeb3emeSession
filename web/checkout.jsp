@@ -53,9 +53,30 @@
                                 <tr>
                                     <td></td>
                                     <td></td>
+                                    <td></td>                                    
+                                    <td><b>Sous Total</b></td>
+                                    <td><b>${soustotal}</b></td>
+                                </tr>
+                                 <tr>
                                     <td></td>
+                                    <td></td>
+                                    <td></td>                                    
+                                    <td><b>TPS</b></td>
+                                    <td><b>${TPS}</b></td>
+                                </tr>
+                                  <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>                                    
+                                    <td><b>TVQ</b></td>
+                                    <td><b>${TVQ}</b></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>                                    
                                     <td><b><fmt:message key="checkout.total"/> :</b></td>
-                                    <td><b>${amount}</b></td>
+                                    <td><b>${amount}$</b></td>
                                 </tr>
                             </table>
                         </center>
@@ -68,7 +89,7 @@
                 <h4><fmt:message key="checkout.message"/></h4>
             </c:otherwise>
         </c:choose>      
-        <form action="detailProduit" method="post">                          
+        <form action="init" method="post">                          
             <div class="col-lg-12"> 
                 <input type="hidden" name="action" value="SHOPPING"/>
                 <span><input type="submit" class="btn btn-info" value=<fmt:message key="checkout.bouton"/> /></span>

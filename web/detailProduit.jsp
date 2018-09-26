@@ -24,7 +24,7 @@
     </head>
     <body>
       
-       <%@ include file="NavBarre.jsp" %>
+        <jsp:include  page="NavBarre.jsp"/>
 
         <div class="container"> 
             <div class="row">

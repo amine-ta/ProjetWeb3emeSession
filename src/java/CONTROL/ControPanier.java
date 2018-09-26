@@ -160,6 +160,11 @@ public class ControPanier extends HttpServlet {
       
         }
         else if(action.equals("CHECKOUT")){
+            String amount=GestionnaireProduit.getTotalApresTAXE(buylist);
+            session.setAttribute("amount",amount);
+            session.setAttribute("TPS",GestionnaireProduit.TPS);
+             session.setAttribute("TVQ",GestionnaireProduit.TVQ);
+             session.setAttribute("soustotal",GestionnaireProduit.getSousTotal(buylist));
             session.setAttribute("PageCourante","/PageClient.jsp");
             url = "/PageClient.jsp";
         }
