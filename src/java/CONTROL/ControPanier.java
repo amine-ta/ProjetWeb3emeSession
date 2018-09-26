@@ -99,6 +99,7 @@ public class ControPanier extends HttpServlet {
                      buylist = new Vector();
                      buylist.addElement(lignecmd);
                   } else {
+                      count++;
                       for (int i = 0; i < buylist.size(); i++) {
                         LigneCommande lgDeSession = (LigneCommande) buylist.get(i);
                         
@@ -112,7 +113,7 @@ public class ControPanier extends HttpServlet {
                     }
 
                     if (!match) {
-                        count++;
+                        
                         buylist.addElement(lignecmd);
                     }
 
@@ -143,17 +144,15 @@ public class ControPanier extends HttpServlet {
               }
             
             else if(action.equals("DELETE")){
-                       count--;
-                       
-                       
-                       
-                       
-                       String del = request.getParameter("delindex");
-                        
+                        String del = request.getParameter("delindex");
                         Integer id = Integer.valueOf(del);
-                        buylist.removeElementAt(id);                    
-                        session.setAttribute("count", count); 
-                        
+                        LigneCommande ligne=(LigneCommande)buylist.get(id);
+                        count -=ligne.getQuantite();              
+                       
+                       
+                                            
+                       buylist.removeElementAt(id);                         
+                       session.setAttribute("count", count);                     
                        
                         url = "/panier.jsp";
             }

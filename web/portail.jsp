@@ -34,10 +34,10 @@
 
 
     </head>
-    <body>
+    <body class="container">
         <jsp:include page="NavBarre.jsp"/>
         
-        <div class="container">
+        <div >
              <div class="row">
                 <div class="col-lg-12">
                     <div id="main" class="cellule grand">
