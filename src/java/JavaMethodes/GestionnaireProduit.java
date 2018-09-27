@@ -5,11 +5,13 @@
  */
 package JavaMethodes;
 
+import DAO.CommandeDAO;
 import DAO.MarqueDAO;
 import DAO.ProduitDAO;
 import DAO.categorieDAO;
 import entite.*;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Vector;
 
@@ -20,7 +22,7 @@ import java.util.Vector;
 public class GestionnaireProduit
         
 {  static public double TPS =0.05;
-   static public double TVQ =0.1; 
+   static public double TVQ =0.09975; 
     public static Object rechercheUnProduit(String produitId)
     {
         Integer id = Integer.valueOf(produitId);
@@ -70,18 +72,14 @@ public class GestionnaireProduit
     
     public static String getTotalApresTAXE(Vector buylist){
   //on va calculer le prix total
-      double total =0,totalTaxe=0;
-    
-      for (int i=0; i< buylist.size();i++) {
-        LigneCommande anOrder = (LigneCommande) buylist.elementAt(i);
-        double price= anOrder.getProduit().getPrix().doubleValue();
-        
-        int qty = anOrder.getQuantite();
-        total += (price * qty);
-      }
+      double total =0,totalTaxeTPS=0,totalTaxeTVQ;
       
-      totalTaxe =total*(TPS+TVQ);
-      total +=totalTaxe;
+      total = getSousTotal(buylist);
+      
+      totalTaxeTPS = getMontantTPS(total);
+      totalTaxeTVQ = getMontantTVQ(total);
+      total = total + totalTaxeTPS + totalTaxeTVQ;
+      
       String amount = new Float(total).toString();
       int n = amount.indexOf('.');
       amount = amount.substring(0,n+3);      
@@ -92,22 +90,84 @@ public class GestionnaireProduit
     
     public static double getSousTotal(Vector buylist){
   //on va calculer le prix total
-      double total =0;
+      double sstotal =0;
     
       for (int i=0; i< buylist.size();i++) {
         LigneCommande anOrder = (LigneCommande) buylist.elementAt(i);
         double price= anOrder.getProduit().getPrix().doubleValue();
         
         int qty = anOrder.getQuantite();
-        total += (price * qty);
+        sstotal += (price * qty);
       }
       
-      return total ;
+      return sstotal ;
       
             }    
     
+    public static double getMontantTPS(double total)
+    {
+        double montantTPS = total * TPS;
+        return montantTPS;
+    }
     
+    public static String getStrMontantTPS(double mntTPS)
+    {
+        String montantTPS = new Float(mntTPS).toString();
+        int n = montantTPS.indexOf('.');
+        montantTPS = montantTPS.substring(0,n+3); 
+        return montantTPS;
+    }
     
-     
+    public static double getMontantTVQ(double total)
+    {
+        double montantTVQ = total * TVQ;
+        return montantTVQ;
+    }
+    
+    public static String getStrMontantTVQ(double mntTVQ)
+    {
+        String montantTVQ = new Float(mntTVQ).toString();
+        int n = montantTVQ.indexOf('.');
+        montantTVQ = montantTVQ.substring(0,n+3); 
+        return montantTVQ;
+    } 
+    
+    public static String getValeurTPS()
+    {
+        DecimalFormat dc = new DecimalFormat("###.###");
+        
+        
+        String valTPS = dc.format(TPS*100);
+        valTPS = valTPS+"%";
+        return valTPS;
+    }
+    
+    public static String getValeurTVQ()
+    {
+        DecimalFormat dc = new DecimalFormat("###.###");
+        String valTVQ = dc.format(TVQ*100);
+        valTVQ = valTVQ+"%";
+        return valTVQ;
+    }
+    
+    public static BigDecimal recupererDernierIDCommande()
+    {
+        BigDecimal increment;
+        BigDecimal incrementor = new BigDecimal("1");
+        
+        Object obj = CommandeDAO.recupererDernierIDCommande();
+        
+        // S'il n'y a aucun client dans la BDD, on démarre les ID à 1001, sinon
+        // on incrémente de 1 le dernier ID récupéré.
+        if (obj != null)
+        {
+           increment = (BigDecimal)obj;
+           increment = increment.add(incrementor);
+        }
+        else
+           increment = (new BigDecimal(5001));
+        
+        return increment;
+    }
     
 }

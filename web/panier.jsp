@@ -36,6 +36,9 @@
                         <center>
                             <table border="0" class="table table-hover" width="100%" >
                                 <tr>
+                                    <td><b>Numéro de Commande : ${commande}</b></td>
+                                </tr>
+                                <tr>
                                     <td><b><fmt:message key="panier.nom"/></b></td>
                                     <td><b><fmt:message key="panier.marque"/></b></td>                               
                                     <td><b><fmt:message key="panier.format"/></b></td>
@@ -43,7 +46,9 @@
                                     <td><b><fmt:message key="panier.prix"/> ($)</b></td>
                                     <td><b></b></td>
                                 </tr>
-
+                                
+                                
+                                
                                 <c:forEach  varStatus="loop"  var="prod" items="${shoppingcart}">
                                     <tr>
                                         <td><a href="detailProduit?id=${prod.produit.idproduit}&action=detail"><b>${prod.produit.nomproduit}</b></a></td>

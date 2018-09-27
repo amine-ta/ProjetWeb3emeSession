@@ -57,14 +57,21 @@ public class GestionnaireClient {
               return true;
     }
     
+    //Méthode qui récupère un client dans la BDD via son email
+    public static Client recuperClient(String courriel)
+    {
+        Client client = ClientDAO.rechercherCourriel(courriel);
+        return client;
+    }
+            
    
     //Méthode qui va valider le mot de passe pour l'authentification d'un client existant
     public static boolean confirmerMotDePasse(String courriel,String mdp)
     {
-       Client liste = ClientDAO.rechercherCourriel(courriel);
+       Client client = ClientDAO.rechercherCourriel(courriel);
   
             
-       if (liste.getMotdepasse().equals(mdp))
+       if (client.getMotdepasse().equals(mdp))
               return true;
         else
               return false;

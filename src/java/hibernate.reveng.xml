@@ -41,11 +41,11 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-schema="ETEAM6"/>
-  <table-filter match-name="PRODUIT"/>
+  <table-filter match-name="CLIENT"/>
   <table-filter match-name="COMMANDE"/>
   <table-filter match-name="LIGNE_COMMANDE"/>
+  <table-filter match-name="FACTURE"/>
   <table-filter match-name="CATEGORIE"/>
   <table-filter match-name="MARQUE"/>
-  <table-filter match-name="CLIENT"/>
-  <table-filter match-name="FACTURE"/>
+  <table-filter match-name="PRODUIT"/>
 </hibernate-reverse-engineering>

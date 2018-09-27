@@ -6,6 +6,7 @@
 package Filtres;
 
 import JavaMethodes.GestionnaireClient;
+import entite.Client;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -80,7 +81,12 @@ public class AuthentificationClientExistant implements Filter {
                 request.setAttribute("MessageErreurLogin", MessageErreurMotDePasse);
             } 
             else
-               chain.doFilter(request, response);
+            {
+            
+            chain.doFilter(request, response);
+            }
+            
+                
         }
         RequestDispatcher rd = request.getRequestDispatcher(PageJSP);
         rd.forward(request,response);

@@ -1,5 +1,5 @@
 package entite;
-// Generated 2018-09-06 20:59:46 by Hibernate Tools 4.3.1
+// Generated 2018-09-27 18:59:22 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -15,9 +15,8 @@ public class Commande  implements java.io.Serializable {
 
      private BigDecimal nocommande;
      private Client client;
-     private Facture facture;
      private Date datecommande;
-     private Set ligneCommandes = new HashSet(0);
+     private Set factures = new HashSet(0);
 
     public Commande() {
     }
@@ -26,12 +25,11 @@ public class Commande  implements java.io.Serializable {
     public Commande(BigDecimal nocommande) {
         this.nocommande = nocommande;
     }
-    public Commande(BigDecimal nocommande, Client client, Facture facture, Date datecommande, Set ligneCommandes) {
+    public Commande(BigDecimal nocommande, Client client, Date datecommande, Set factures) {
        this.nocommande = nocommande;
        this.client = client;
-       this.facture = facture;
        this.datecommande = datecommande;
-       this.ligneCommandes = ligneCommandes;
+       this.factures = factures;
     }
    
     public BigDecimal getNocommande() {
@@ -48,13 +46,6 @@ public class Commande  implements java.io.Serializable {
     public void setClient(Client client) {
         this.client = client;
     }
-    public Facture getFacture() {
-        return this.facture;
-    }
-    
-    public void setFacture(Facture facture) {
-        this.facture = facture;
-    }
     public Date getDatecommande() {
         return this.datecommande;
     }
@@ -62,12 +53,12 @@ public class Commande  implements java.io.Serializable {
     public void setDatecommande(Date datecommande) {
         this.datecommande = datecommande;
     }
-    public Set getLigneCommandes() {
-        return this.ligneCommandes;
+    public Set getFactures() {
+        return this.factures;
     }
     
-    public void setLigneCommandes(Set ligneCommandes) {
-        this.ligneCommandes = ligneCommandes;
+    public void setFactures(Set factures) {
+        this.factures = factures;
     }
 
 

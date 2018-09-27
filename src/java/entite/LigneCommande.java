@@ -1,8 +1,5 @@
 package entite;
-// Generated 2018-09-06 20:59:46 by Hibernate Tools 4.3.1
-
-import java.math.BigDecimal;
-
+// Generated 2018-09-27 18:59:22 by Hibernate Tools 4.3.1
 
 
 
@@ -13,24 +10,19 @@ public class LigneCommande  implements java.io.Serializable {
 
 
      private LigneCommandeId id;
-     private Commande commande;
      private Produit produit;
      private Integer quantite;
-     
-     private BigDecimal montantParProduit = new BigDecimal(0);
 
     public LigneCommande() {
     }
 
 	
-    public LigneCommande(LigneCommandeId id, Commande commande, Produit produit) {
+    public LigneCommande(LigneCommandeId id, Produit produit) {
         this.id = id;
-        this.commande = commande;
         this.produit = produit;
     }
-    public LigneCommande(LigneCommandeId id, Commande commande, Produit produit, Integer quantite) {
+    public LigneCommande(LigneCommandeId id, Produit produit, Integer quantite) {
        this.id = id;
-       this.commande = commande;
        this.produit = produit;
        this.quantite = quantite;
     }
@@ -41,13 +33,6 @@ public class LigneCommande  implements java.io.Serializable {
     
     public void setId(LigneCommandeId id) {
         this.id = id;
-    }
-    public Commande getCommande() {
-        return this.commande;
-    }
-    
-    public void setCommande(Commande commande) {
-        this.commande = commande;
     }
     public Produit getProduit() {
         return this.produit;
@@ -62,11 +47,6 @@ public class LigneCommande  implements java.io.Serializable {
     
     public void setQuantite(Integer quantite) {
         this.quantite = quantite;
-    }
-    
-    public void calculerMontantProduit()
-    {
-        montantParProduit = montantParProduit.add(this.getProduit().getPrix().multiply(new BigDecimal(this.getQuantite())));
     }
 
 

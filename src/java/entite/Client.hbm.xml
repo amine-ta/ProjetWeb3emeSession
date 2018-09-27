@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-09-06 20:59:49 by Hibernate Tools 4.3.1 -->
+<!-- Generated 2018-09-27 18:59:22 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entite.Client" table="CLIENT" schema="ETEAM6" optimistic-lock="version">
         <id name="idclient" type="big_decimal">
@@ -9,16 +9,16 @@
             <generator class="assigned" />
         </id>
         <property name="nomclient" type="string">
-            <column name="NOMCLIENT" length="30" />
+            <column name="NOMCLIENT" length="30" not-null="true" />
         </property>
         <property name="prenomclient" type="string">
-            <column name="PRENOMCLIENT" length="40" />
+            <column name="PRENOMCLIENT" length="40" not-null="true" />
         </property>
         <property name="couriel" type="string">
-            <column name="COURIEL" length="40" />
+            <column name="COURIEL" length="40" not-null="true" unique="true" />
         </property>
         <property name="motdepasse" type="string">
-            <column name="MOTDEPASSE" length="40" />
+            <column name="MOTDEPASSE" length="40" not-null="true" />
         </property>
         <property name="telephoneclient" type="string">
             <column name="TELEPHONECLIENT" length="15" />
@@ -26,7 +26,7 @@
         <property name="nocivique" type="string">
             <column name="NOCIVIQUE" length="10" />
         </property>
-		<property name="noapp" type="string">
+        <property name="noapp" type="string">
             <column name="NOAPP" length="3" />
         </property>
         <property name="nomrue" type="string">
@@ -46,12 +46,6 @@
                 <column name="IDCLIENT" precision="20" scale="0" />
             </key>
             <one-to-many class="entite.Commande" />
-        </set>
-        <set name="factures" table="FACTURE" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="IDCLIENT" precision="20" scale="0" />
-            </key>
-            <one-to-many class="entite.Facture" />
         </set>
     </class>
 </hibernate-mapping>

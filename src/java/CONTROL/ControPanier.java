@@ -7,6 +7,7 @@ package CONTROL;
 
 import DAO.ProduitDAO;
 import JavaMethodes.GestionnaireProduit;
+import entite.Commande;
 import entite.LigneCommande;
 import entite.Produit;
 import java.io.IOException;
@@ -86,16 +87,20 @@ public class ControPanier extends HttpServlet {
                 boolean match = false;
                 Integer id = Integer.valueOf(IdItem);
                 LigneCommande lignecmd = new LigneCommande();
+                
                 Produit pro = ProduitDAO.getSingleProduit(new BigDecimal(id));
                 lignecmd.setProduit(pro);
                 Integer quantite = Integer.valueOf(qte);
                 if (pro.getQuantiteenstock() >= quantite)
                 {    
+                  
                   lignecmd.setQuantite(quantite);
                   Integer nouvelleQteEnStock = pro.getQuantiteenstock() - lignecmd.getQuantite();
                   session.setAttribute("detailProduit",pro);
                   if (buylist == null) {
                      count++;
+                     
+                     session.setAttribute("commande",GestionnaireProduit.recupererDernierIDCommande());
                      buylist = new Vector();
                      buylist.addElement(lignecmd);
                   } else {
@@ -162,8 +167,10 @@ public class ControPanier extends HttpServlet {
             String amount=GestionnaireProduit.getTotalApresTAXE(buylist);
             
             session.setAttribute("amount",amount);
-            session.setAttribute("TPS",GestionnaireProduit.TPS);
-            session.setAttribute("TVQ",GestionnaireProduit.TVQ);
+            session.setAttribute("TPS",GestionnaireProduit.getStrMontantTPS(GestionnaireProduit.getMontantTPS(GestionnaireProduit.getSousTotal(buylist))));
+            session.setAttribute("TVQ",GestionnaireProduit.getStrMontantTVQ(GestionnaireProduit.getMontantTVQ(GestionnaireProduit.getSousTotal(buylist))));
+            session.setAttribute("TPSval", GestionnaireProduit.getValeurTPS());
+            session.setAttribute("TVQval", GestionnaireProduit.getValeurTVQ());
             session.setAttribute("soustotal",GestionnaireProduit.getSousTotal(buylist));
             session.setAttribute("PageCourante","/PageClient.jsp");
             url = "/PageClient.jsp";
