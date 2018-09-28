@@ -15,11 +15,11 @@
     <div class="row">
         <div class="col-lg-6"> 
             <span>
-                 <a class="navbar-brand" href="#" style="font-family:Brush Script MT; color:red; font-size:30">Pro-Vita Tarh&Cia inc.</a>
+                 <a class="navbar-brand" href="#" style="font-family:Brush Script MT; color:red; font-size:30px">Pro-Vita Tarh&Cia inc.</a>
             </span>
             
              <span>
-                <ul class="nav navbar-nav"> 
+                <ul class="nav navbar-nav navbar-right"> 
                 <li class="active"><a href="init"><fmt:message key="barre.Accueil"/></a></li>
                 <li><a href="ChangementLangue?language=fr_CA">Français</a></li>
                 <li><a href="ChangementLangue?language=en_CA">English</a></li>      

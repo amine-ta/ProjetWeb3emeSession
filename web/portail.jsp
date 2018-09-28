@@ -80,7 +80,7 @@
             </div>                
             <div class="row">
 
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <form action="ControPanier" methode="POST" >   
                              <input type="hidden"  name="Filtre" value="mar" />
@@ -95,7 +95,7 @@
                         </form>    
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <form action="ControPanier" methode="POST">  
                             <input type="hidden"  name="Filtre" value="Cat" />
@@ -108,6 +108,21 @@
                         </form> 
                     </div>
                 </div>
+                                
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <form action="ControPanier" methode="POST">  
+                            <input type="hidden"  name="Filtre" value="prix" />
+                            <select class="form-control" name="rechPrix" onchange="this.form.submit();">
+                                <option><fmt:message key="Portail.rechPrix"/> </option>                             
+                                    <option>0$ - 25.99$</option>
+                                    <option>26$ - 50.99$</option>
+                                    <option>51$ + </option>
+                                
+                            </select>
+                        </form> 
+                    </div>
+                </div>                                
 
             </div>
             <div class="row">

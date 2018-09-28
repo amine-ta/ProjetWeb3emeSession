@@ -68,6 +68,33 @@ public class GestionnaireProduit implements IGestionnaireProduit {
         return Produit;
     }
     
+     public static List rechercherProduitParPrix(String prix)
+    {
+        BigDecimal prixMin,prixMax;
+        
+        if (prix.equalsIgnoreCase("0$ - 25.99$"))
+        {
+            prixMin = new BigDecimal(0);
+            prixMax = new BigDecimal(26);
+        }    
+        else if (prix.equalsIgnoreCase("26$ - 50.99$"))
+        {
+            prixMin = new BigDecimal(26);
+            prixMax = new BigDecimal(51);
+        }    
+        else
+        {
+            prixMin = new BigDecimal(51);
+            prixMax = new BigDecimal(51);
+        }
+        
+        
+        List produit =ProduitDAO.rechercheProduitParPrix(prixMin,prixMax);
+       // util.HibernateUtil.getSessionFactory().close();
+        return produit;
+    }
+    
+    
     public static String getTotalApresTAXE(Vector buylist){
   //on va calculer le prix total
       double total =0,totalTaxeTPS=0,totalTaxeTVQ;

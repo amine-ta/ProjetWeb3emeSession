@@ -81,7 +81,7 @@ public class ControPanier extends HttpServlet {
         String Filtre=request.getParameter("Filtre");
         String categorie=request.getParameter("categorie");
         String marque=request.getParameter("marque");
-        
+        String prix = request.getParameter("rechPrix");
     
  
       
@@ -109,7 +109,12 @@ public class ControPanier extends HttpServlet {
                 session.setAttribute("PageCourante","/portail.jsp");
                 url = "/portail.jsp";
            }
-           
+           else if(Filtre.equals("prix")){
+                List LiProduit=GestionnaireProduit.rechercherProduitParPrix(prix);
+                session.setAttribute("ListPoduit",LiProduit);
+                session.setAttribute("PageCourante","/portail.jsp");
+                url = "/portail.jsp";
+           }
        }
        
          else if(action.equals("cart")){            
@@ -164,17 +169,7 @@ public class ControPanier extends HttpServlet {
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
                 rd.forward(request, response);
-    }
-
-    
-    
-    
-    
-//et on redirige la requête vers la page EShop.jsp qui va afficher
-//le nouveau panier (grâce au INCLUDE)
-// session.setAttribute("shoppingcart", buylist);
-//et on redirige la requête vers la page EShop.jsp qui va afficher
-//le nouveau panier (grâce au INCLUDE)
+       } 
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 /**

@@ -63,7 +63,34 @@ public class ProduitDAO {
         }
         return null;
     }
+    
+    public static List rechercheProduitParPrix(BigDecimal prixMin, BigDecimal prixMax) {
+        try {
+            Query query;
+            getOpenSession();
+            if (!prixMin.equals(prixMax))
+            {
+                query = session.createQuery("FROM Produit WHERE prix >= :MIN AND prix < :MAX ");
+                query.setParameter("MIN", prixMin);
+                query.setParameter("MAX", prixMax);
+            }
+            else
+            {
+                query = session.createQuery("FROM Produit WHERE prix >= :MAX ");
+                query.setParameter("MAX", prixMax);
+            }
+            
+            List results = query.list();
+            return results;
+        } catch (Exception e) {
+        } finally {
+            session.close();
 
+        }
+        return null;
+    }
+    
+   
     public static List getProduitParMarque(String nom) {
 
         try {
