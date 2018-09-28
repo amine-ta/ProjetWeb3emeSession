@@ -47,12 +47,12 @@ Contributor(s):
     <property name="hibernate.connection.username">eteam6</property>
     <property name="hibernate.connection.password">zied</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
-    <mapping resource="entite/Marque.hbm.xml"/>
     <mapping resource="entite/Produit.hbm.xml"/>
     <mapping resource="entite/LigneCommande.hbm.xml"/>
-    <mapping resource="entite/Commande.hbm.xml"/>
-    <mapping resource="entite/Facture.hbm.xml"/>
-    <mapping resource="entite/Categorie.hbm.xml"/>
     <mapping resource="entite/Client.hbm.xml"/>
+    <mapping resource="entite/Commande.hbm.xml"/>
+    <mapping resource="entite/Categorie.hbm.xml"/>
+    <mapping resource="entite/Marque.hbm.xml"/>
+    <mapping resource="entite/Facture.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

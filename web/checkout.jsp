@@ -54,21 +54,21 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>                                    
-                                    <td><b><fmt:message key="checkout.sstotal"/> :</b></td>
+                                    <td><b>Sous Total</b></td>
                                     <td><b>${soustotal}</b></td>
                                 </tr>
                                  <tr>
                                     <td></td>
                                     <td></td>
                                     <td></td>                                    
-                                    <td><b>TPS (${TPSval}) :</b></td>
+                                    <td><b>TPS</b></td>
                                     <td><b>${TPS}</b></td>
                                 </tr>
                                   <tr>
                                     <td></td>
                                     <td></td>
                                     <td></td>                                    
-                                    <td><b>TVQ (${TVQval}) :</b></td>
+                                    <td><b>TVQ</b></td>
                                     <td><b>${TVQ}</b></td>
                                 </tr>
                                 <tr>

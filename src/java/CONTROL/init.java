@@ -5,6 +5,7 @@
  */
 package CONTROL;
 
+import JavaMethodes.GestionnairePanier;
 import JavaMethodes.GestionnaireProduit;
 import entite.Produit;
 import java.io.IOException;
@@ -53,7 +54,7 @@ public class init extends HttpServlet {
         LiCategorie = GestionnaireProduit.rechercherToutesCategories();
         LiMarque = GestionnaireProduit.rechercherToutesMarques();
         LiProduit = GestionnaireProduit.rechercherTousProduits();
-        session.setAttribute("count", ControPanier.count);
+        session.setAttribute("count", GestionnairePanier.count);
         session.setAttribute("ListPoduit", LiProduit);
         session.setAttribute("ListMarque", LiMarque);
         session.setAttribute("ListCategorie", LiCategorie);  

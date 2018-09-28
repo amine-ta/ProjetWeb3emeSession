@@ -1,19 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-09-27 18:59:22 by Hibernate Tools 4.3.1 -->
+<!-- Generated 2018-09-06 20:59:49 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entite.Facture" table="FACTURE" schema="ETEAM6" optimistic-lock="version">
-        <composite-id name="id" class="entite.FactureId">
-            <key-property name="idfacture" type="big_decimal">
-                <column name="IDFACTURE" precision="30" scale="0" />
-            </key-property>
-            <key-property name="nocommande" type="big_decimal">
-                <column name="NOCOMMANDE" precision="30" scale="0" />
-            </key-property>
-        </composite-id>
-        <many-to-one name="commande" class="entite.Commande" update="false" insert="false" fetch="select">
-            <column name="NOCOMMANDE" precision="30" scale="0" not-null="true" />
+        <id name="idfacture" type="big_decimal">
+            <column name="IDFACTURE" precision="30" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="client" class="entite.Client" fetch="select">
+            <column name="IDCLIENT" precision="20" scale="0" />
         </many-to-one>
         <property name="prixht" type="big_decimal">
             <column name="PRIXHT" precision="7" />
@@ -24,5 +20,11 @@
         <property name="datefacturation" type="date">
             <column name="DATEFACTURATION" length="7" />
         </property>
+        <set name="commandes" table="COMMANDE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFACTURE" precision="30" scale="0" />
+            </key>
+            <one-to-many class="entite.Commande" />
+        </set>
     </class>
 </hibernate-mapping>

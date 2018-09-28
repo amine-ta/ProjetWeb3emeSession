@@ -6,11 +6,11 @@
 package CONTROL;
 
 import DAO.ProduitDAO;
-import JavaMethodes.GestionnaireCommande;
+import JavaMethodes.GestionnairePanier;
 import JavaMethodes.GestionnaireProduit;
-import entite.Commande;
+import Services.IGestionnairePanier;
 import entite.LigneCommande;
-import entite.Produit;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -31,9 +31,7 @@ import javax.servlet.http.HttpSession;
  * @author Mohamed Amine Tarhouni et Gian Gabriele Ciampa
  */
 public class ControPanier extends HttpServlet {
-
-    Vector buylist;
-    static int count=0;
+    IGestionnairePanier gestionnairePanier =new GestionnairePanier();
     String url;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -72,116 +70,67 @@ public class ControPanier extends HttpServlet {
             response.sendRedirect("erreur.jsp");
         }
 
-        Vector buylist = (Vector) session.getAttribute("shoppingcart");
-
         String action = request.getParameter("action");
 
-        String IdItem = request.getParameter("idItem");
-        
-        String qte = request.getParameter("qteSaisie");
 
-
-        if (!action.equals("CHECKOUT")) {
-            //si clic sur supprimer
-            if (action.equals("ADD")||action.equals("portail")) {
-                 
-                boolean match = false;
-                Integer id = Integer.valueOf(IdItem);
-                LigneCommande lignecmd = new LigneCommande();
+//Gestion Panier
+        if (!action.equals("CHECKOUT")) {            
+           
+            if (action.equals("ADD")||action.equals("portail")){ 
                 
-                Produit pro = ProduitDAO.getSingleProduit(new BigDecimal(id));
-                lignecmd.setProduit(pro);
-                Integer quantite = Integer.valueOf(qte);
-                if (pro.getQuantiteenstock() >= quantite)
-                {    
-                  
-                  lignecmd.setQuantite(quantite);
-                  Integer nouvelleQteEnStock = pro.getQuantiteenstock() - lignecmd.getQuantite();
-                  session.setAttribute("detailProduit",pro);
-                  if (buylist == null) {
-                     count++;
-                     
-                     session.setAttribute("commande",GestionnaireCommande.recupererDernierIDCommande());
-                     buylist = new Vector();
-                     buylist.addElement(lignecmd);
-                  } else {
-                      count++;
-                      for (int i = 0; i < buylist.size(); i++) {
-                        LigneCommande lgDeSession = (LigneCommande) buylist.get(i);
-                        
-                        if (lgDeSession.getProduit().getIdproduit().equals(lignecmd.getProduit().getIdproduit()))
-                        {
-                           lgDeSession.setQuantite(lgDeSession.getQuantite() + lignecmd.getQuantite());
-                           buylist.setElementAt(lgDeSession,i);
-                           match = true;
-                           nouvelleQteEnStock = pro.getQuantiteenstock() - lgDeSession.getQuantite();
-                        }
-                    }
+                         String IdItem = request.getParameter("idItem");  
+                         String quantite=request.getParameter("qteSaisie"); 
+                         
+                         gestionnairePanier.ajouterProduitDansPanier(IdItem,quantite); 
+               
+                            if(action.equals("ADD")){
+                                   url = "/detailProduit.jsp";
+                                   session.setAttribute("count",GestionnairePanier.count);
+                                   session.setAttribute("PageCourante","/detailProduit.jsp");
+                               }
+                               if(action.equals("portail")){
+                                   session.setAttribute("count",GestionnairePanier.count);
+                                   session.setAttribute("PageCourante","/portail.jsp");
+                                   url = "/portail.jsp";
+                               }
+                  }
 
-                    if (!match) {
-                        
-                        buylist.addElement(lignecmd);
-                    }
-
-                }
-                session.setAttribute("count", count);
-                  
-                if(action.equals("ADD")){
-                    url = "/detailProduit.jsp";
-                    session.setAttribute("PageCourante","/detailProduit.jsp");
-                }
-                if(action.equals("portail")){
-                    session.setAttribute("PageCourante","/portail.jsp");
-                    url = "/portail.jsp";
-                }
-              }
-              else
-                {
-                    request.setAttribute("MessageErreurQteEnStockProd",msgErreurQteStk);
-                    session.setAttribute("PageCourante","/detailProduit.jsp");
-                    url = "/detailProduit.jsp";
-                }
-            }
          
             else if(action.equals("cart")){
-                 session.setAttribute("count", count);
+                 session.setAttribute("count",GestionnairePanier.count);
                  session.setAttribute("PageCourante","/panier.jsp");
                  url = "/panier.jsp";
               }
             
-            else if(action.equals("DELETE")){
+            else if(action.equals("DELETE")){               
                         String del = request.getParameter("delindex");
-                        Integer id = Integer.valueOf(del);
-                        LigneCommande ligne=(LigneCommande)buylist.get(id);
-                        count -=ligne.getQuantite();              
-                       
-                       
-                                            
-                       buylist.removeElementAt(id);                         
-                       session.setAttribute("count", count);                     
-                       
+                        gestionnairePanier.SupprimerUnProduitPanier(del);                       
+                        session.setAttribute("count", GestionnairePanier.count);                                      
                         url = "/panier.jsp";
-            }
-      
-        }
+                }
+            }//Fin If De (action.equals("ADD")||action.equals("portail")
+        
         else if(action.equals("CHECKOUT")){
-            String amount=GestionnaireProduit.getTotalApresTAXE(buylist);
             
+            String amount=GestionnaireProduit.getTotalApresTAXE(gestionnairePanier.getPanier());              
             session.setAttribute("amount",amount);
-            session.setAttribute("TPS",GestionnaireProduit.getStrMontantTPS(GestionnaireProduit.getMontantTPS(GestionnaireProduit.getSousTotal(buylist))));
-            session.setAttribute("TVQ",GestionnaireProduit.getStrMontantTVQ(GestionnaireProduit.getMontantTVQ(GestionnaireProduit.getSousTotal(buylist))));
-            session.setAttribute("TPSval", GestionnaireProduit.getValeurTPS());
-            session.setAttribute("TVQval", GestionnaireProduit.getValeurTVQ());
-            session.setAttribute("soustotal",GestionnaireProduit.getSousTotal(buylist));
+            session.setAttribute("TPS",GestionnaireProduit.TPS);
+            session.setAttribute("TVQ",GestionnaireProduit.TVQ);            
+            session.setAttribute("soustotal",GestionnaireProduit.getSousTotal(gestionnairePanier.getPanier()));
             session.setAttribute("PageCourante","/PageClient.jsp");
             url = "/PageClient.jsp";
         }
-                session.setAttribute("shoppingcart", buylist);
+        
+                session.setAttribute("shoppingcart", gestionnairePanier.getPanier());
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
                 rd.forward(request, response);
     }
 
+    
+    
+    
+    
 //et on redirige la requête vers la page EShop.jsp qui va afficher
 //le nouveau panier (grâce au INCLUDE)
 // session.setAttribute("shoppingcart", buylist);

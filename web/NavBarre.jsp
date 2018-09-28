@@ -39,7 +39,7 @@
              
             </div> 
 
-            <ul class="nav navbar-nav navbar-center">
+            <ul class="nav navbar-nav navbar-right">
                 <li><a href="ControPanier?action=cart"><span class="glyphicon glyphicon-shopping-cart"></span><fmt:message key="barre.panier"/>: ${count}</a></li>
             </ul>
 

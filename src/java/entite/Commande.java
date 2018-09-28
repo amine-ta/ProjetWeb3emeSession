@@ -1,5 +1,5 @@
 package entite;
-// Generated 2018-09-27 18:59:22 by Hibernate Tools 4.3.1
+// Generated 2018-09-06 20:59:46 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -15,8 +15,9 @@ public class Commande  implements java.io.Serializable {
 
      private BigDecimal nocommande;
      private Client client;
+     private Facture facture;
      private Date datecommande;
-     private Set factures = new HashSet(0);
+     private Set ligneCommandes = new HashSet(0);
 
     public Commande() {
     }
@@ -25,20 +26,13 @@ public class Commande  implements java.io.Serializable {
     public Commande(BigDecimal nocommande) {
         this.nocommande = nocommande;
     }
-    public Commande(BigDecimal nocommande, Client client, Date datecommande, Set factures) {
+    public Commande(BigDecimal nocommande, Client client, Facture facture, Date datecommande, Set ligneCommandes) {
        this.nocommande = nocommande;
        this.client = client;
+       this.facture = facture;
        this.datecommande = datecommande;
-       this.factures = factures;
+       this.ligneCommandes = ligneCommandes;
     }
-
-    public Commande(BigDecimal nocommande, Client client, Date datecommande) {
-        this.nocommande = nocommande;
-        this.client = client;
-        this.datecommande = datecommande;
-    }
-    
-    
    
     public BigDecimal getNocommande() {
         return this.nocommande;
@@ -54,6 +48,13 @@ public class Commande  implements java.io.Serializable {
     public void setClient(Client client) {
         this.client = client;
     }
+    public Facture getFacture() {
+        return this.facture;
+    }
+    
+    public void setFacture(Facture facture) {
+        this.facture = facture;
+    }
     public Date getDatecommande() {
         return this.datecommande;
     }
@@ -61,12 +62,12 @@ public class Commande  implements java.io.Serializable {
     public void setDatecommande(Date datecommande) {
         this.datecommande = datecommande;
     }
-    public Set getFactures() {
-        return this.factures;
+    public Set getLigneCommandes() {
+        return this.ligneCommandes;
     }
     
-    public void setFactures(Set factures) {
-        this.factures = factures;
+    public void setLigneCommandes(Set ligneCommandes) {
+        this.ligneCommandes = ligneCommandes;
     }
 
 

@@ -1,5 +1,5 @@
 package entite;
-// Generated 2018-09-27 18:59:22 by Hibernate Tools 4.3.1
+// Generated 2018-09-06 20:59:46 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -25,23 +25,20 @@ public class Client  implements java.io.Serializable {
      private String province;
      private String pays;
      private Set commandes = new HashSet(0);
+     private Set factures = new HashSet(0);
 
     public Client() {
     }
 
 	
-    public Client(BigDecimal idclient, String nomclient, String prenomclient, String couriel, String motdepasse) {
+    public Client(BigDecimal idclient) {
         this.idclient = idclient;
-        this.nomclient = nomclient;
-        this.prenomclient = prenomclient;
-        this.couriel = couriel;
-        this.motdepasse = motdepasse;
     }
-    public Client(BigDecimal idclient, String nomclient, String prenomclient, String couriel, String motdepasse, String telephoneclient, String nocivique, String noapp, String nomrue, String ville, String province, String pays, Set commandes) {
+    public Client(BigDecimal idclient, String nomclient, String prenomclient, String courriel, String motdepasse, String telephoneclient, String nocivique, String noapp, String nomrue,String ville, String province, String pays, Set commandes, Set factures) {
        this.idclient = idclient;
        this.nomclient = nomclient;
        this.prenomclient = prenomclient;
-       this.couriel = couriel;
+       this.couriel = courriel;
        this.motdepasse = motdepasse;
        this.telephoneclient = telephoneclient;
        this.nocivique = nocivique;
@@ -51,13 +48,14 @@ public class Client  implements java.io.Serializable {
        this.province = province;
        this.pays = pays;
        this.commandes = commandes;
+       this.factures = factures;
     }
 
-    public Client(BigDecimal idclient, String nomclient, String prenomclient, String couriel, String motdepasse, String telephoneclient, String nocivique, String noapp, String nomrue, String ville, String province, String pays) {
+    public Client(BigDecimal idclient, String nomclient, String prenomclient, String courriel, String motdepasse, String telephoneclient, String nocivique, String noapp, String nomrue, String ville, String province, String pays) {
         this.idclient = idclient;
         this.nomclient = nomclient;
         this.prenomclient = prenomclient;
-        this.couriel = couriel;
+        this.couriel = courriel;
         this.motdepasse = motdepasse;
         this.telephoneclient = telephoneclient;
         this.nocivique = nocivique;
@@ -119,20 +117,6 @@ public class Client  implements java.io.Serializable {
     public void setNocivique(String nocivique) {
         this.nocivique = nocivique;
     }
-    public String getNoapp() {
-        return this.noapp;
-    }
-    
-    public void setNoapp(String noapp) {
-        this.noapp = noapp;
-    }
-    public String getNomrue() {
-        return this.nomrue;
-    }
-    
-    public void setNomrue(String nomrue) {
-        this.nomrue = nomrue;
-    }
     public String getVille() {
         return this.ville;
     }
@@ -161,9 +145,29 @@ public class Client  implements java.io.Serializable {
     public void setCommandes(Set commandes) {
         this.commandes = commandes;
     }
+    public Set getFactures() {
+        return this.factures;
+    }
+    
+    public void setFactures(Set factures) {
+        this.factures = factures;
+    }
 
+    public String getNoapp() {
+        return noapp;
+    }
 
+    public void setNoapp(String noapp) {
+        this.noapp = noapp;
+    }
 
+    public String getNomrue() {
+        return nomrue;
+    }
+
+    public void setNomrue(String nomrue) {
+        this.nomrue = nomrue;
+    }
 
 }
 
