@@ -36,7 +36,7 @@
                         <center>
                             <table border="0" class="table table-hover" width="100%" >
                                 <tr>
-                                    <td><b><fmt:message key="panier.commande"/> : ${commande}</b></td>
+                                    <td><b><fmt:message key="panier.commande"/> : ${noCommande}</b></td>
                                     <td><b><fmt:message key="panier.dateCommande"/> : ${dateCommande}</b></td>
                                 </tr>
                                 <tr>

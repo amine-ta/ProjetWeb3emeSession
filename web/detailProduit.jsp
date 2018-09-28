@@ -85,13 +85,14 @@
                             <form name="ADDFORM" action="ControPanier" method="POST">
                                 <div class="col-sm-6">
                                     <label id="qte"><fmt:message key="detail.qte"/>:  </label>
-                                    <input type="${(detailProduit.quantiteenstock <=0)? "hidden" :"text"}"  name="qteSaisie" value="1"  />                                 
+                                    <input type="${(detailProduit.quantiteenstock <=0)? "hidden" :"text"}"  name="qteSaisie" value="1"  />    
+                                     <h4 style="color:red"> ${msgErreurQteStk}</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="hidden"  name="idItem" value="${detailProduit.idproduit}"/>
                                     <input type="hidden"  name="action" value="ADD" />
                                     <input type="${(detailProduit.quantiteenstock <=0)? "HIDDEN" :"SUBMIT"}" class="btn btn-info " value=<fmt:message key="detail.bouton"/> />
-                                     <h4 style="color:red"> ${MessageErreurQteEnStockProd}</h4>
+                                   
                                 </div>
                                 <hr>    
 

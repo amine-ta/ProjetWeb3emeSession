@@ -70,7 +70,7 @@ public class ControPanier extends HttpServlet {
        else
                msgErreurQteStk = "La quantité en stock est insuffisante";
        
-        
+       
         if (session == null) {
             response.sendRedirect("/erreur.jsp");
         }
@@ -129,7 +129,9 @@ public class ControPanier extends HttpServlet {
                     if (action.equals("ADD")||action.equals("portail")){              
                                  String IdItem = request.getParameter("idItem");  
                                  String quantite=request.getParameter("qteSaisie");                      
-                                 gestionnairePanier.ajouterProduitDansPanier(IdItem,quantite); 
+                                 if (gestionnaireProduit.verifierQuantiteProduitDansBDD(IdItem,quantite))
+                                 {    
+                                            gestionnairePanier.ajouterProduitDansPanier(IdItem,quantite); 
 
                                             if(action.equals("ADD")){
                                                 url = "/detailProduit.jsp";
@@ -140,6 +142,9 @@ public class ControPanier extends HttpServlet {
                                                 session.setAttribute("PageCourante","/portail.jsp");
                                                 url = "/portail.jsp";
                                             }
+                                 }
+                                 else
+                                     request.setAttribute("msgErreurQteStk", msgErreurQteStk);
                           }       
                       
                         else if(action.equals("DELETE")){               

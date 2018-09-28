@@ -55,6 +55,23 @@ public class GestionnaireProduit implements IGestionnaireProduit {
        
     }
     
+    public boolean verifierQuantiteProduitDansBDD(String idProduit,String qte)
+    {
+        boolean qteOK = false;
+        Integer id = Integer.valueOf(idProduit);
+        Integer quantite = Integer.valueOf(qte);
+        
+        produit = ProduitDAO.getSingleProduit(new BigDecimal(id));
+        
+        if (quantite <= produit.getQuantiteenstock())
+            qteOK = true;
+        else
+            qteOK = false;
+        
+        return qteOK;
+        
+    }
+    
     public static List rechercherProduitParMarque(String _nomMarque)
     {   List Produit =ProduitDAO.getProduitParMarque(_nomMarque);
         //util.HibernateUtil.getSessionFactory().close();

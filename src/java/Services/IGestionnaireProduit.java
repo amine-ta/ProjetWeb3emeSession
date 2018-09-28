@@ -13,4 +13,5 @@ import entite.Produit;
  */
 public interface IGestionnaireProduit {
     Object getSingleProduit(String Item);
+    boolean verifierQuantiteProduitDansBDD(String IdItem,String quantite);
 }

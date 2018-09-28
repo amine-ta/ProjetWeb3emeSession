@@ -48,6 +48,8 @@ public class ProduitDAO {
             return results;
 
     }
+    
+      
 
     public static Produit getSingleProduit(BigDecimal idproduit) {
         try {
