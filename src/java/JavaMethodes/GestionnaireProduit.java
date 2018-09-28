@@ -150,24 +150,6 @@ public class GestionnaireProduit
         return valTVQ;
     }
     
-    public static BigDecimal recupererDernierIDCommande()
-    {
-        BigDecimal increment;
-        BigDecimal incrementor = new BigDecimal("1");
-        
-        Object obj = CommandeDAO.recupererDernierIDCommande();
-        
-        // S'il n'y a aucun client dans la BDD, on démarre les ID à 1001, sinon
-        // on incrémente de 1 le dernier ID récupéré.
-        if (obj != null)
-        {
-           increment = (BigDecimal)obj;
-           increment = increment.add(incrementor);
-        }
-        else
-           increment = (new BigDecimal(5001));
-        
-        return increment;
-    }
+    
     
 }

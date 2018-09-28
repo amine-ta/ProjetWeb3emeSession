@@ -6,6 +6,7 @@
 package CONTROL;
 
 import DAO.ProduitDAO;
+import JavaMethodes.GestionnaireCommande;
 import JavaMethodes.GestionnaireProduit;
 import entite.Commande;
 import entite.LigneCommande;
@@ -100,7 +101,7 @@ public class ControPanier extends HttpServlet {
                   if (buylist == null) {
                      count++;
                      
-                     session.setAttribute("commande",GestionnaireProduit.recupererDernierIDCommande());
+                     session.setAttribute("commande",GestionnaireCommande.recupererDernierIDCommande());
                      buylist = new Vector();
                      buylist.addElement(lignecmd);
                   } else {

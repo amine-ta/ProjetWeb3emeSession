@@ -31,6 +31,14 @@ public class Commande  implements java.io.Serializable {
        this.datecommande = datecommande;
        this.factures = factures;
     }
+
+    public Commande(BigDecimal nocommande, Client client, Date datecommande) {
+        this.nocommande = nocommande;
+        this.client = client;
+        this.datecommande = datecommande;
+    }
+    
+    
    
     public BigDecimal getNocommande() {
         return this.nocommande;

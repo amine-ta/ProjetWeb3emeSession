@@ -6,6 +6,8 @@
 package DAO;
 
 import static DAO.ClientDAO.session;
+import entite.Commande;
+import entite.LigneCommande;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -40,4 +42,29 @@ public class CommandeDAO {
         return results;
     }
     
+    
+    public static void insert(Commande commande)
+    {
+        Transaction tx = OpenSessionWithTransaction();
+        session.save(commande);
+        tx.commit();
+       
+       session.close();
+        
+    }
+    
+     public static void insertLigne(LigneCommande ligneCmd)
+    {
+        Transaction tx = OpenSessionWithTransaction();
+        session.save(ligneCmd);
+        tx.commit();
+       
+       session.close();
+        
+    }
 }
+
+
+
+
+    
