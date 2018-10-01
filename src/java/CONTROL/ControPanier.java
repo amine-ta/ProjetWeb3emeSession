@@ -6,6 +6,7 @@
 package CONTROL;
 
 import DAO.ProduitDAO;
+import JavaMethodes.GestionnaireCommande;
 import JavaMethodes.GestionnairePanier;
 import JavaMethodes.GestionnaireProduit;
 import Services.IGestionnairePanier;
@@ -131,6 +132,8 @@ public class ControPanier extends HttpServlet {
                                  String quantite=request.getParameter("qteSaisie");                      
                                  if (gestionnaireProduit.verifierQuantiteProduitDansBDD(IdItem,quantite))
                                  {    
+                                            session.setAttribute("noCommande",GestionnaireCommande.recupererDernierIDCommande());
+                                            session.setAttribute("dateCommande",GestionnaireCommande.obtenirTodayDate());
                                             gestionnairePanier.ajouterProduitDansPanier(IdItem,quantite); 
 
                                             if(action.equals("ADD")){
@@ -159,8 +162,10 @@ public class ControPanier extends HttpServlet {
 
                         String amount=GestionnaireProduit.getTotalApresTAXE(gestionnairePanier.getPanier());              
                         session.setAttribute("amount",amount);
-                        session.setAttribute("TPS",GestionnaireProduit.TPS);
-                        session.setAttribute("TVQ",GestionnaireProduit.TVQ);            
+                        session.setAttribute("TPS",GestionnaireProduit.getStrMontantTPS(GestionnaireProduit.getMontantTPS(GestionnaireProduit.getSousTotal(gestionnairePanier.getPanier()))));
+                        session.setAttribute("TPSval",GestionnaireProduit.getValeurTPS());
+                        session.setAttribute("TVQ",GestionnaireProduit.getStrMontantTVQ(GestionnaireProduit.getMontantTVQ(GestionnaireProduit.getSousTotal(gestionnairePanier.getPanier()))));           
+                        session.setAttribute("TVQval",GestionnaireProduit.getValeurTVQ());
                         session.setAttribute("soustotal",GestionnaireProduit.getSousTotal(gestionnairePanier.getPanier()));
                         session.setAttribute("PageCourante","/PageClient.jsp");
                         url = "/PageClient.jsp";

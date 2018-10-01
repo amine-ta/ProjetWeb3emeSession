@@ -12,6 +12,8 @@ import entite.LigneCommande;
 import entite.LigneCommandeId;
 import entite.Produit;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -38,7 +40,16 @@ public static BigDecimal recupererDernierIDCommande()
            increment = (new BigDecimal(5001));
         
         return increment;
-    }    
+    } 
+
+public static String obtenirTodayDate()
+{
+    
+    Date date = new Date();
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    String dateString = df.format(date);
+    return dateString;
+}
 
 
 public static void creerNouvelleCommande(Client client)
