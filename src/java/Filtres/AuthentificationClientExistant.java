@@ -6,6 +6,7 @@
 package Filtres;
 
 import JavaMethodes.GestionnaireClient;
+import JavaMethodes.GestionnaireCommande;
 import entite.Client;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -25,81 +26,78 @@ import javax.servlet.http.HttpSession;
  * @author Mohamed Amine Tarhouni et Gian Gabriele Ciampa
  */
 public class AuthentificationClientExistant implements Filter {
-    
+
     private static final boolean debug = true;
+    public static boolean connecter = false;
+
+    String motDePasse = "";
+    Client client = null;
+    String MessageErreurConnexion, MessageErreurMotDePasse, PageJSP;
+    String MessageErreurCourriel;
+    String loginInvalide;
 
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
-    
+
     public AuthentificationClientExistant() {
-    }    
-    
-    
+    }
+
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-  
-        
-        
-        String motDePasseLogin = request.getParameter("logincourriel");
+
+        String couriel = request.getParameter("logincourriel");
         String langue = request.getParameter("languecourr");
-        
-        String MessageErreurConnexion,MessageErreurMotDePasse,PageJSP;
+        String action = request.getParameter("action");
         PageJSP = "/PageClient.jsp";
-        if (langue.equalsIgnoreCase("en_CA"))
-        {
-            MessageErreurConnexion = "The email does not exist";
-            MessageErreurMotDePasse = "Invalid password entered";
-            
-        }
-        else if (langue.equalsIgnoreCase("fr_CA"))
-        {
-            MessageErreurConnexion = "Le courriel n'existe pas";
-            MessageErreurMotDePasse = "Le mot de passe est invalide";
-            
-        }
-        else
-        {
-            MessageErreurConnexion = "L'e-mail non esiste";
-            MessageErreurMotDePasse = "La chiave d'accesso non è valida";
-            
-        }    
-        
-        // Si le courriel n'existe pas dans la base de donnée, alors le client est inexistant!!
-        if(!GestionnaireClient.rechercherCourriel(motDePasseLogin))
-        {
-            request.setAttribute("MessageErreurLogin", MessageErreurConnexion);
-        } 
-        // Le courriel existe, mais le mot de passe ne correspond pas au mot de passe dans la base de donnée
-        else
-        {
-            if (!GestionnaireClient.confirmerMotDePasse(request.getParameter("logincourriel"), request.getParameter("loginmdp")))
-            {
-                request.setAttribute("logincourrielv",request.getParameter("logincourriel"));
-                request.setAttribute("MessageErreurLogin", MessageErreurMotDePasse);
-            } 
-            else
-            {
-            
-            chain.doFilter(request, response);
+
+        if (action.equals("CLIENTEXISIT")) {
+            // Si le courriel n'existe pas dans la base de donnée, alors le client est inexistant!!
+            if (!GestionnaireClient.rechercherCourriel(couriel)) {
+                request.setAttribute("Valide", true);
+                RequestDispatcher rd = request.getRequestDispatcher(PageJSP);
+                rd.forward(request, response);
+            } // Le courriel existe, mais le mot de passe ne correspond pas au mot de passe dans la base de donnée
+            else if (!GestionnaireClient.confirmerMotDePasse(request.getParameter("logincourriel"), request.getParameter("loginmdp"))) {
+                request.setAttribute("logincourrielv", request.getParameter("logincourriel"));
+                request.setAttribute("ValideMdp", true);
+                RequestDispatcher rd = request.getRequestDispatcher(PageJSP);
+                rd.forward(request, response);
+
+            } else {
+                motDePasse = request.getParameter("loginmdp");
+                client = GestionnaireClient.ConfirmerClient(couriel, motDePasse);
+                GestionnaireCommande.creerNouvelleCommande(client);
             }
-            
-                
+
+        } else if (action.equals("CreerClient")) {
+
+            boolean courrieltrouve = false;
+            String courriel = request.getParameter("courriel");
+            String langues = request.getParameter("languecourr");
+            courrieltrouve = GestionnaireClient.rechercherCourriel(courriel);
+
+            if (courrieltrouve) {
+                request.setAttribute("ValideCourriel", true);
+                RequestDispatcher rd = request.getRequestDispatcher(PageJSP);
+                rd.forward(request, response);
+            }
+
         }
-        RequestDispatcher rd = request.getRequestDispatcher(PageJSP);
-        rd.forward(request,response);
+
+        chain.doFilter(request, response);
+
     }
-    
-    public void destroy() {        
+
+    public void destroy() {
     }
 
     /**
      * Init method for this filter
      */
-    public void init(FilterConfig filterConfig) {        
-    
+    public void init(FilterConfig filterConfig) {
+
     }
 }
-    

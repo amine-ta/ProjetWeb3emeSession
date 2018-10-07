@@ -5,20 +5,18 @@
  */
 package DAO;
 
-import static DAO.ClientDAO.session;
-import entite.Commande;
+import static DAO.CommandeDAO.session;
 import entite.LigneCommande;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
  *
- * @author 1895040
+ * @author Administrateur
  */
-public class CommandeDAO {
-    
+public class DAOLigneDeCommande {
+
     static Session session;
 
     private static void getOpenSession() throws HibernateException {
@@ -28,35 +26,16 @@ public class CommandeDAO {
 
     private static Transaction OpenSessionWithTransaction() {
         getOpenSession();
-
         Transaction tx = session.beginTransaction();
         return tx;
     }
-    
-    
-    public static Object recupererDernierIDCommande() {
-        getOpenSession();
-        Query query = session.createQuery("SELECT MAX(nocommande) FROM Commande");
-        Object results = query.uniqueResult();
-        session.close();
-        return results;
-    }
-    
-    
-    public static void insert(Commande commande)
-    {
+
+    public static void insertLigneCommande(LigneCommande ligneCmd) {
         Transaction tx = OpenSessionWithTransaction();
-        session.save(commande);
+        session.save(ligneCmd);
         tx.commit();
-       
-       session.close();
-        
+        session.close();
+
     }
-    
 
 }
-
-
-
-
-    

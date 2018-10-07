@@ -5,11 +5,14 @@
  */
 package CONTROL;
 
-import JavaMethodes.GestionnaireClient;
-import JavaMethodes.GestionnaireCommande;
-import entite.Client;
+import DAO.DAOLigneDeCommande;
+import entite.LigneCommande;
+import entite.LigneCommandeId;
+import entite.Produit;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Vector;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,9 +25,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Administrateur
  */
-public class ControlClient extends HttpServlet {
-        String action;
-        String NextPage;
+public class ControlPaiement extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,47 +38,28 @@ public class ControlClient extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession();
-         action =request.getParameter("action");
-         
-         if(action.equals("CreerClient")&& action!=null){
-             
-        String prenom = request.getParameter("prenom");
-        String nom = request.getParameter("nom");
-        String telephone = request.getParameter("telephone");
-        String nocivique = request.getParameter("nocivique");
-        String noapp = request.getParameter("noapp");
-        String rue = request.getParameter("rue");
-        String ville = request.getParameter("ville");
-        String province = request.getParameter("province");
-        String pays = request.getParameter("pays");
-        String courriel = request.getParameter("courriel");
-        String motdepasse = request.getParameter("motdepasse");
- 
-        Client client = GestionnaireClient.creerClient(prenom,nom,telephone,nocivique,noapp,rue,ville,province,pays,courriel,motdepasse);     
-        GestionnaireCommande.creerNouvelleCommande(client);  
-        
-        request.setAttribute("nouveauclientnom", nom);
-        request.setAttribute("nouveauclientprenom", prenom);
-        session.setAttribute("PageCourante","/checkout.jsp");
+
             
-         }
-         
-         else if(action.equals("clientExist")&& action!=null) {
-  
-         
-         
-         Vector buylist = (Vector) session.getAttribute("shoppingcart");
-         session.setAttribute("shoppingcart", buylist);
-         session.setAttribute("PageCourante","/checkout.jsp");
-         
-         }
-         
-         
-         NextPage="/checkout.jsp"; 
+        String action = request.getParameter("action");
+         HttpSession session = request.getSession();
+        if(action.equals("PayerCommande")){
+            BigDecimal noComm=(BigDecimal)session.getAttribute("noCommande");
+
+           
+            Vector<LigneCommande> Panier=(Vector)session.getAttribute("shoppingcart");
+            for(int i=0;i<Panier.size();i++){
+                Panier.get(i).getQuantite();
+                LigneCommandeId ligneId= new LigneCommandeId(noComm,Panier.get(i).getProduit().getIdproduit());
+                LigneCommande uneLigneCommande = new LigneCommande(ligneId,Panier.get(i).getProduit(),Panier.get(i).getQuantite());
+                DAOLigneDeCommande.insertLigneCommande(uneLigneCommande);
+            }
+            
+         String NextPage="/FinAchat.html"; 
          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(NextPage);
          dispatcher.forward(request, response);
-    
+        }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -19,7 +19,7 @@ import java.util.Vector;
  */
 public class GestionnairePanier implements IGestionnairePanier {
 
-    private Vector panier;
+    private  Vector<LigneCommande> panier;
     private Produit produit;
     private LigneCommande lignecmd;
     public static  int count=0;
@@ -65,7 +65,7 @@ public class GestionnairePanier implements IGestionnairePanier {
         return match;
     }
 
-    public Vector getPanier() {
+    public  Vector getPanier() {
         return panier;
     }
 

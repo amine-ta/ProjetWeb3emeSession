@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * @author gcia_
  */
 public class Deconnexion extends HttpServlet {
-
+String nextJSP;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,35 +30,10 @@ public class Deconnexion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        
+            throws ServletException, IOException {     
         HttpSession session = request.getSession();
-        String language = request.getParameter("languecourr");
-        String messageDeconnexion = "";
-        String nextJSP;
-        nextJSP = "/DeconnClient.jsp";
-                      
-        session.setAttribute("langueCourante", language);
-        
-        if (language.equalsIgnoreCase("fr_CA"))
-        {
-            messageDeconnexion = "Vous avez été déconnecté.  Merci d'avoir magasiné chez Pro-Vita Tarh&Cia inc.\n";
-            messageDeconnexion = messageDeconnexion + "Bonne journée!";
-        }
-        else if (language.equalsIgnoreCase("en_CA"))
-         {
-            messageDeconnexion = "You have been log out.  Thanks having shopped at Pro-Vita Tarh&Cia inc. \n";
-            messageDeconnexion = messageDeconnexion + "Have a nice day!";
-         }
-        else
-       {
-            messageDeconnexion = "Avete stato disconnesso.  Grazie per avere acquistato su Pro-Vita Tarh&Cia inc.\n";
-            messageDeconnexion = messageDeconnexion + "Buona Giornata!";
-         }     
-        session.invalidate();
-        request.setAttribute("MessageDeconnexion", messageDeconnexion);
-     
+        nextJSP = "/DeconnClient.jsp";                   
+        session.invalidate();  
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request, response);
         

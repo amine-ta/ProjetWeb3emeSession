@@ -74,7 +74,6 @@
                 </div>  
                      <div class="row">
                     <form action="ControPanier" method="post">
-
                         <div class="col-lg-6">                       
                             <input type="hidden" name="action" value="CHECKOUT"/>
                             <span><input type="submit" name="action" class="btn btn-info" value=<fmt:message key="panier.btnpayer"/> /></span>
@@ -94,8 +93,7 @@
                 <h4><fmt:message key="panier.vide"/></h4>
                 <div class="row">
                     <div class="col-lg-12"> 
-                        <form action="init" method="post">                          
-                           
+                        <form action="init" method="post">                                                     
                                 <input type="hidden" name="action" value="SHOPPING"/>
                                  <span><input type="submit" class="btn btn-info" value=<fmt:message key="panier.btncontinuer"/> /></span>
                              

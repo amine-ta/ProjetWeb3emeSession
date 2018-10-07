@@ -31,13 +31,6 @@ import javax.servlet.http.HttpSession;
 /**
  *
  * @author Mohamed Amine Tarhouni et Gian Gabriele Ciampa
- */
-public class ControPanier extends HttpServlet {
-    IGestionnairePanier gestionnairePanier =new GestionnairePanier();
-    IGestionnaireProduit gestionnaireProduit = new GestionnaireProduit();
-    String url;
-    String action;
-    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -45,7 +38,13 @@ public class ControPanier extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */
+     **/
+public class ControPanier extends HttpServlet {
+    IGestionnairePanier gestionnairePanier =new GestionnairePanier();
+    IGestionnaireProduit gestionnaireProduit = new GestionnaireProduit();
+    String url;
+    String action;
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -159,7 +158,6 @@ public class ControPanier extends HttpServlet {
         
        
             else if(action.equals("CHECKOUT")){
-
                         String amount=GestionnaireProduit.getTotalApresTAXE(gestionnairePanier.getPanier());              
                         session.setAttribute("amount",amount);
                         session.setAttribute("TPS",GestionnaireProduit.getStrMontantTPS(GestionnaireProduit.getMontantTPS(GestionnaireProduit.getSousTotal(gestionnairePanier.getPanier()))));

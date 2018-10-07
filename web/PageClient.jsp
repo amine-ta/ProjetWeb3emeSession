@@ -65,7 +65,10 @@
                         </div>
                     </div> 
                        <input type="hidden" name="action" value="clientExist"/>  
-                    <h3>${MessageErreurLogin}</h3>
+                       <c:if test="${Valide}"><h3> <fmt:message key="MessageErreurConnexion"/></h3></c:if>  
+                       <c:if test="${ValideMdp}"><h3> <fmt:message key="MessageErreurMotDePasse"/></h3></c:if> 
+                                                         
+                   
                 </form>    
                     </div>    
                 </div>
@@ -192,7 +195,7 @@
                         </div>
                     </div>
                        <input type="hidden" name="action" value="CreerClient"/>    
-                    <h3>${MessageErreurCourriel}</h3> 
+                       <c:if test="${ValideCourriel}"> <h3><fmt:message key="MessageErreurCourriel"/></h3></c:if> 
                 </form> 
                 </div>
                 </div>     

@@ -57,14 +57,14 @@
                                     <td><b><fmt:message key="checkout.sstotal"/> :</b></td>
                                     <td><b>${soustotal}</b></td>
                                 </tr>
-                                 <tr>
+                                <tr>
                                     <td></td>
                                     <td></td>
                                     <td></td>                                    
                                     <td><b>TPS (${TPSval}) :</b></td>
                                     <td><b>${TPS}</b></td>
                                 </tr>
-                                  <tr>
+                                <tr>
                                     <td></td>
                                     <td></td>
                                     <td></td>                                    
@@ -88,14 +88,25 @@
             <c:otherwise>
                 <h4><fmt:message key="checkout.message"/></h4>
             </c:otherwise>
-        </c:choose>      
-        <form action="init" method="post">                          
-            <div class="col-lg-12"> 
-                <input type="hidden" name="action" value="SHOPPING"/>
-                <span><input type="submit" class="btn btn-info" value=<fmt:message key="checkout.bouton"/> /></span>
+        </c:choose> 
+        <div class="row">
+            <div class="col-lg-6">      
+                <form action="init" method="post">                          
+                    
+                        <input type="hidden" name="action" value="SHOPPING"/>
+                        <span><input type="submit" class="btn btn-info" value=<fmt:message key="checkout.bouton"/> /></span>
+                   
+                </form> 
             </div>  
-        </form> 
-
+            <div class="col-lg-6"> 
+                <form action="ControlPaiement" method="post">                          
+                
+                        <input type="hidden" name="action" value="PayerCommande"/>
+                        <span><input type="submit" class="btn btn-info" value=<fmt:message key="checkout.PayerCommande"/> /></span>
+               
+                </form> 
+            </div>
+        </div>   
     </div> 
 
 </body>

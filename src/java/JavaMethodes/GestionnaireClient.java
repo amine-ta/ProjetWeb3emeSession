@@ -15,9 +15,14 @@ import java.util.List;
  * @author Mohamed Amine Tarhouni et Gian Gabriele Ciampa
  */
 public class GestionnaireClient {
+    static Client  unClient;
+
+    public static Client getUnClient() {
+        return unClient;
+    }
     
     // Méthode qui va ajouter un nouveau client à la table Client sur la BDD
-    public static void creerClient(String prenom,String nom,String telephone,String nocivique,String noapp,String rue,String ville,String province,
+    public static Client creerClient(String prenom,String nom,String telephone,String nocivique,String noapp,String rue,String ville,String province,
                                      String pays, String courriel,String mdp)
     {
         BigDecimal increment;
@@ -38,11 +43,13 @@ public class GestionnaireClient {
            increment = (new BigDecimal(1001));
  
         // On créé un construteur de type client
-        Client unClient = new Client(increment,nom,prenom,courriel,mdp,telephone,nocivique,noapp,rue,ville,province,pays);
-       
-        
+      
+        unClient = new Client(increment,nom,prenom,courriel,mdp,telephone,nocivique,noapp,rue,ville,province,pays);
+      
         // On appelle la fonction DAO qui va l'ajouter dans la BDD
         ClientDAO.insert(unClient);
+        
+        return unClient;
     }
     
     // Méthode qui recherche le courriel dans la BDD
@@ -75,6 +82,17 @@ public class GestionnaireClient {
               return true;
         else
               return false;
+    }
+    
+     public static Client ConfirmerClient(String courriel,String mdp)
+    {
+       Client client = ClientDAO.rechercherCourriel(courriel);
+  
+            
+       if (client.getMotdepasse().equals(mdp))
+              return client;
+        else
+              return null;
     }
     
 }
