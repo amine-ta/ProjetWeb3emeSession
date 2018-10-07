@@ -1,12 +1,15 @@
 <%-- 
     Document   : DeconnClient
     Created on : 2018-09-23, 21:51:24
-    Author     : gcia_
+    Author     : Mohamed Amine Tarhouni, Gian Gabriele Ciampa
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<fmt:setLocale value = "${sessionScope.langueCourante}"/>
+<fmt:setBundle basename="Langage"/>
 <!DOCTYPE html>
 <html>
     <head>

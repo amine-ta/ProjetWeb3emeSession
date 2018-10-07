@@ -1,3 +1,9 @@
+<%-- 
+    Document   : checkout.jsp
+    Created on : 2018-09-07, 09:02:37
+    Author     : Mohamed Amine Tarhouni, Gian Gabriele Ciampa
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -25,12 +31,18 @@
         <c:choose>
             <c:when test="${shoppingcart != null  && shoppingcart.size() > 0 }">
                 <div class="row">
-
+                    <div>
+                                    <td><b><fmt:message key="checkout.nofacture"/>${nofacture}</b></td>
+                                    <td><b><fmt:message key="checkout.nocommande"/>${nocommandeF}</b></td>
+                                    <td><b><fmt:message key="checkout.courriel"/>${boncourriel}</b></td>
+                                    </div>
+                                    <br/>
                     <div class="col-lg-12">
                         <h3><fmt:message key="checkout.panier"/>  <span class="glyphicon glyphicon-shopping-cart"></span> </h3>
                         <center>
                             <table border="0" class="table table-hover" width="100%" >
                                 <tr>
+                                
                                     <td><b><fmt:message key="checkout.nom"/></b></td>
                                     <td><b><fmt:message key="checkout.marque"/></b></td>                               
                                     <td><b><fmt:message key="checkout.format"/></b></td>

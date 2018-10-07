@@ -47,7 +47,8 @@ public class AuthentificationClientExistant implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-
+        
+       
         String couriel = request.getParameter("logincourriel");
         String langue = request.getParameter("languecourr");
         String action = request.getParameter("action");
@@ -70,8 +71,9 @@ public class AuthentificationClientExistant implements Filter {
                 motDePasse = request.getParameter("loginmdp");
                 client = GestionnaireClient.ConfirmerClient(couriel, motDePasse);
                 GestionnaireCommande.creerNouvelleCommande(client);
+                request.setAttribute("boncourriel", couriel);
             }
-
+               
         } else if (action.equals("CreerClient")) {
 
             boolean courrieltrouve = false;
@@ -84,9 +86,11 @@ public class AuthentificationClientExistant implements Filter {
                 RequestDispatcher rd = request.getRequestDispatcher(PageJSP);
                 rd.forward(request, response);
             }
+            request.setAttribute("boncourriel", courriel);
 
         }
-
+        
+        
         chain.doFilter(request, response);
 
     }

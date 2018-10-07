@@ -69,7 +69,10 @@ public class ControlClient extends HttpServlet {
          Vector buylist = (Vector) session.getAttribute("shoppingcart");
          session.setAttribute("shoppingcart", buylist);
          session.setAttribute("PageCourante","/checkout.jsp");
+         String boncourriel = (String)request.getAttribute("boncourriel");
+         session.setAttribute("boncourriel", boncourriel);
          
+                  
          }
          
          

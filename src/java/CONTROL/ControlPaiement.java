@@ -54,7 +54,7 @@ public class ControlPaiement extends HttpServlet {
                 DAOLigneDeCommande.insertLigneCommande(uneLigneCommande);
             }
             
-         String NextPage="/FinAchat.html"; 
+         String NextPage="/FinAchat.jsp"; 
          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(NextPage);
          dispatcher.forward(request, response);
         }

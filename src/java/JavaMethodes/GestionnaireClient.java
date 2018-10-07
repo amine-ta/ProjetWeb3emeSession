@@ -70,7 +70,8 @@ public class GestionnaireClient {
         Client client = ClientDAO.rechercherCourriel(courriel);
         return client;
     }
-            
+    
+     
    
     //Méthode qui va valider le mot de passe pour l'authentification d'un client existant
     public static boolean confirmerMotDePasse(String courriel,String mdp)

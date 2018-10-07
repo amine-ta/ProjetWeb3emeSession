@@ -32,14 +32,7 @@
         </div>
         <div class="col-lg-6">
 
-            <div class="search-container">
-             
-                    <input type="text" placeholder="Search.." name="search" id="search" onkeyup="startSearch()">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-             
-            </div> 
-
-            <ul class="nav navbar-nav navbar-center">
+           <ul class="nav navbar-nav navbar-center">
                 <li><a href="ControPanier?action=cart"><span class="glyphicon glyphicon-shopping-cart"></span><fmt:message key="barre.panier"/>: ${count}</a></li>
             </ul>
 

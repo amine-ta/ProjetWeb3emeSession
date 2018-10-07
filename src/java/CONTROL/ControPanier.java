@@ -7,6 +7,7 @@ package CONTROL;
 
 import DAO.ProduitDAO;
 import JavaMethodes.GestionnaireCommande;
+import JavaMethodes.GestionnaireFacture;
 import JavaMethodes.GestionnairePanier;
 import JavaMethodes.GestionnaireProduit;
 import Services.IGestionnairePanier;
@@ -158,7 +159,11 @@ public class ControPanier extends HttpServlet {
         
        
             else if(action.equals("CHECKOUT")){
-                        String amount=GestionnaireProduit.getTotalApresTAXE(gestionnairePanier.getPanier());              
+                        String amount=GestionnaireProduit.getTotalApresTAXE(gestionnairePanier.getPanier());   
+                        session.setAttribute("nofacture",GestionnaireFacture.recupererDernierIDCommande());
+                        session.setAttribute("nocommandeF",session.getAttribute("noCommande"));
+                        session.setAttribute("bonclient",session.getAttribute("bonclient"));
+                        session.setAttribute("boncourriel",session.getAttribute("boncourriel"));
                         session.setAttribute("amount",amount);
                         session.setAttribute("TPS",GestionnaireProduit.getStrMontantTPS(GestionnaireProduit.getMontantTPS(GestionnaireProduit.getSousTotal(gestionnairePanier.getPanier()))));
                         session.setAttribute("TPSval",GestionnaireProduit.getValeurTPS());

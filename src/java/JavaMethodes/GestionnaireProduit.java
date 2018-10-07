@@ -154,10 +154,11 @@ public class GestionnaireProduit implements IGestionnaireProduit {
     
     public static String getStrMontantTPS(double mntTPS)
     {
-        String montantTPS = new Float(mntTPS).toString();
-     //   int n = montantTPS.indexOf('.');
-    //    montantTPS = montantTPS.substring(0,n+3); 
-        return montantTPS;
+         String montantTPS = new Float(mntTPS).toString();
+       // int n = montantTPS.indexOf('.');
+      //  montantTPS = montantTPS.substring(0,n+3); 
+      
+          return montantTPS;
     }
     
     public static double getMontantTVQ(double total)
@@ -169,8 +170,10 @@ public class GestionnaireProduit implements IGestionnaireProduit {
     public static String getStrMontantTVQ(double mntTVQ)
     {
         String montantTVQ = new Float(mntTVQ).toString();
-    //    int n = montantTVQ.indexOf('.');
-     //   montantTVQ = montantTVQ.substring(0,n+3); 
+        
+   
+     //   int n = montantTVQ.indexOf('.');
+      //  montantTVQ = montantTVQ.substring(0,n+3); 
         return montantTVQ;
     } 
     
