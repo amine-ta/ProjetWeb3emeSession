@@ -53,8 +53,8 @@ public class ControlClient extends HttpServlet {
         String courriel = request.getParameter("courriel");
         String motdepasse = request.getParameter("motdepasse");
  
-        Client client = GestionnaireClient.creerClient(prenom,nom,telephone,nocivique,noapp,rue,ville,province,pays,courriel,motdepasse);     
-        GestionnaireCommande.creerNouvelleCommande(client);  
+        GestionnaireClient.creerClient(prenom,nom,telephone,nocivique,noapp,rue,ville,province,pays,courriel,motdepasse);     
+  
         
         request.setAttribute("nouveauclientnom", nom);
         request.setAttribute("nouveauclientprenom", prenom);
@@ -75,7 +75,7 @@ public class ControlClient extends HttpServlet {
                   
          }
          
-         
+        
          NextPage="/checkout.jsp"; 
          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(NextPage);
          dispatcher.forward(request, response);

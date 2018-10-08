@@ -5,6 +5,7 @@
  */
 package CONTROL;
 
+import JavaMethodes.GestionnaireClient;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -32,8 +33,10 @@ String nextJSP;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {     
         HttpSession session = request.getSession();
-        nextJSP = "/DeconnClient.jsp";                   
-        session.invalidate();  
+        
+        nextJSP = "/portail.jsp";                   
+        session.invalidate();
+        GestionnaireClient.setConnecter(false);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request, response);
         

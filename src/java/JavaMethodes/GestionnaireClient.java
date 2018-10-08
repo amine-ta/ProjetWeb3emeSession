@@ -6,6 +6,7 @@
 package JavaMethodes;
 
 import DAO.ClientDAO;
+import Services.IGestionnaireClient;
 import entite.Client;
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,15 +15,16 @@ import java.util.List;
  *
  * @author Mohamed Amine Tarhouni et Gian Gabriele Ciampa
  */
-public class GestionnaireClient {
+public class GestionnaireClient implements IGestionnaireClient{
     static Client  unClient;
+    static boolean connecter=false;
 
     public static Client getUnClient() {
         return unClient;
     }
     
     // Méthode qui va ajouter un nouveau client à la table Client sur la BDD
-    public static Client creerClient(String prenom,String nom,String telephone,String nocivique,String noapp,String rue,String ville,String province,
+    public static void creerClient(String prenom,String nom,String telephone,String nocivique,String noapp,String rue,String ville,String province,
                                      String pays, String courriel,String mdp)
     {
         BigDecimal increment;
@@ -49,7 +51,11 @@ public class GestionnaireClient {
         // On appelle la fonction DAO qui va l'ajouter dans la BDD
         ClientDAO.insert(unClient);
         
-        return unClient;
+
+    }
+
+    public static void setUnClient(Client unClient) {
+        GestionnaireClient.unClient = unClient;
     }
     
     // Méthode qui recherche le courriel dans la BDD
@@ -65,7 +71,7 @@ public class GestionnaireClient {
     }
     
     //Méthode qui récupère un client dans la BDD via son email
-    public static Client recuperClient(String courriel)
+    public static Client recupererClient(String courriel)
     {
         Client client = ClientDAO.rechercherCourriel(courriel);
         return client;
@@ -94,6 +100,14 @@ public class GestionnaireClient {
               return client;
         else
               return null;
+    }
+
+    public static boolean isConnecter() {
+        return connecter;
+    }
+
+    public static void setConnecter(boolean connecter) {
+        GestionnaireClient.connecter = connecter;
     }
     
 }

@@ -8,7 +8,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<jsp:forward page="init" />
+<jsp:forward page="init?action=initialiser" />
 <!DOCTYPE html>
 <html>
     <head>

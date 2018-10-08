@@ -6,6 +6,8 @@
 package CONTROL;
 
 import DAO.ProduitDAO;
+import static Filtres.AuthentificationClientExistant.connecter;
+import JavaMethodes.GestionnaireClient;
 import JavaMethodes.GestionnaireCommande;
 import JavaMethodes.GestionnaireFacture;
 import JavaMethodes.GestionnairePanier;
@@ -43,6 +45,7 @@ import javax.servlet.http.HttpSession;
 public class ControPanier extends HttpServlet {
     IGestionnairePanier gestionnairePanier =new GestionnairePanier();
     IGestionnaireProduit gestionnaireProduit = new GestionnaireProduit();
+   
     String url;
     String action;
    
@@ -171,7 +174,14 @@ public class ControPanier extends HttpServlet {
                         session.setAttribute("TVQval",GestionnaireProduit.getValeurTVQ());
                         session.setAttribute("soustotal",GestionnaireProduit.getSousTotal(gestionnairePanier.getPanier()));
                         session.setAttribute("PageCourante","/PageClient.jsp");
-                        url = "/PageClient.jsp";
+                         boolean connecter = GestionnaireClient.isConnecter();
+                        if(!connecter){
+                           url = "/PageClient.jsp"; 
+                        }
+                        else{
+                            url=  "/checkout.jsp";    
+                           }
+                        
             }
 
        

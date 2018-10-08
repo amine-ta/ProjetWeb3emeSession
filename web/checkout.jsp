@@ -103,16 +103,14 @@
         </c:choose> 
         <div class="row">
             <div class="col-lg-6">      
-                <form action="init" method="post">                          
-                    
+                <form action="init" method="post">                                             
                         <input type="hidden" name="action" value="SHOPPING"/>
                         <span><input type="submit" class="btn btn-info" value=<fmt:message key="checkout.bouton"/> /></span>
                    
                 </form> 
             </div>  
             <div class="col-lg-6"> 
-                <form action="ControlPaiement" method="post">                          
-                
+                <form action="ControlPaiement" method="post">                                    
                         <input type="hidden" name="action" value="PayerCommande"/>
                         <span><input type="submit" class="btn btn-info" value=<fmt:message key="checkout.PayerCommande"/> /></span>
                

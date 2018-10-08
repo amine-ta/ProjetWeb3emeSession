@@ -10,5 +10,5 @@ package Services;
  * @author utilisateur
  */
 public interface IGestionnaireClient {
-    
+   
 }

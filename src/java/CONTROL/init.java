@@ -32,8 +32,8 @@ public class init extends HttpServlet {
     List LiMarque;
     List LiProduit;
     ServletContext application ;
-    
-    
+    List<String> AllNameProduit=new ArrayList<>();
+     HttpSession session = null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,12 +45,12 @@ public class init extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
+          session= request.getSession();
+          String action=request.getParameter("action");
 
-
-    HttpSession session = request.getSession();
-        
-      //  application = request.getSession().getServletContext();
+      if(action.equals("initialiser")){
+          
+         //  application = request.getSession().getServletContext();
         LiCategorie = GestionnaireProduit.rechercherToutesCategories();
         LiMarque = GestionnaireProduit.rechercherToutesMarques();
         LiProduit = GestionnaireProduit.rechercherTousProduits();
@@ -63,19 +63,15 @@ public class init extends HttpServlet {
         session.setAttribute("PageCourante","/portail.jsp");
         String language = request.getParameter("language");
         List<Produit> ALlProduit =new ArrayList();
-        List<String> AllNameProduit=new ArrayList<>();
+       
         
         ALlProduit = GestionnaireProduit.rechercherTousProduits();
         
         for(Produit nom :ALlProduit){
              AllNameProduit.add(nom.getNomproduit());
         }
-              
-        
-        
-         
-         
-        if (language != null)
+           
+         if (language != null)
         {    
             session.setAttribute("langueCourante", language);
             if (language.equalsIgnoreCase("fr_CA"))
@@ -99,6 +95,21 @@ public class init extends HttpServlet {
             session.setAttribute("motEpuise","Épuisé");
             session.setAttribute("motDispo","Disponible");
         }    
+          
+      }
+      else if(){
+          
+          
+          
+          
+      }
+        
+          
+        
+        
+         
+         
+       
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request, response);

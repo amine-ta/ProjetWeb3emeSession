@@ -6,6 +6,9 @@
 package CONTROL;
 
 import DAO.DAOLigneDeCommande;
+import JavaMethodes.GestionnaireClient;
+import JavaMethodes.GestionnaireCommande;
+import entite.Client;
 import entite.LigneCommande;
 import entite.LigneCommandeId;
 import entite.Produit;
@@ -26,7 +29,8 @@ import javax.servlet.http.HttpSession;
  * @author Administrateur
  */
 public class ControlPaiement extends HttpServlet {
-
+Client client = null;
+String motDePasse = "";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,9 +47,11 @@ public class ControlPaiement extends HttpServlet {
         String action = request.getParameter("action");
          HttpSession session = request.getSession();
         if(action.equals("PayerCommande")){
+            
             BigDecimal noComm=(BigDecimal)session.getAttribute("noCommande");
-
-           
+            client = GestionnaireClient.getUnClient();
+            GestionnaireCommande.creerNouvelleCommande(client);
+            
             Vector<LigneCommande> Panier=(Vector)session.getAttribute("shoppingcart");
             for(int i=0;i<Panier.size();i++){
                 Panier.get(i).getQuantite();

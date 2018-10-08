@@ -30,8 +30,8 @@ public class AuthentificationClientExistant implements Filter {
     private static final boolean debug = true;
     public static boolean connecter = false;
 
-    String motDePasse = "";
-    Client client = null;
+   
+    
     String MessageErreurConnexion, MessageErreurMotDePasse, PageJSP;
     String MessageErreurCourriel;
     String loginInvalide;
@@ -52,8 +52,11 @@ public class AuthentificationClientExistant implements Filter {
         String couriel = request.getParameter("logincourriel");
         String langue = request.getParameter("languecourr");
         String action = request.getParameter("action");
+        
         PageJSP = "/PageClient.jsp";
-
+    
+        
+        
         if (action.equals("CLIENTEXISIT")) {
             // Si le courriel n'existe pas dans la base de donnée, alors le client est inexistant!!
             if (!GestionnaireClient.rechercherCourriel(couriel)) {
@@ -68,9 +71,8 @@ public class AuthentificationClientExistant implements Filter {
                 rd.forward(request, response);
 
             } else {
-                motDePasse = request.getParameter("loginmdp");
-                client = GestionnaireClient.ConfirmerClient(couriel, motDePasse);
-                GestionnaireCommande.creerNouvelleCommande(client);
+                Client unClient=GestionnaireClient.recupererClient(couriel);
+                GestionnaireClient.setUnClient(unClient);
                 request.setAttribute("boncourriel", couriel);
             }
                
@@ -90,11 +92,11 @@ public class AuthentificationClientExistant implements Filter {
 
         }
         
-        
+         GestionnaireClient.setConnecter(true);
         chain.doFilter(request, response);
 
     }
-
+    
     public void destroy() {
     }
 
