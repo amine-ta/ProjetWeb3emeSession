@@ -6,11 +6,7 @@
 package JavaMethodes;
 
 import DAO.CommandeDAO;
-import entite.Client;
-import entite.Commande;
-import entite.LigneCommande;
-import entite.LigneCommandeId;
-import entite.Produit;
+import entite.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -48,9 +44,12 @@ public static void creerNouvelleCommande(Client client)
         BigDecimal noCommande = recupererDernierIDCommande();
         
         // On créé un construteur de type client
-        Commande uneCommande = new Commande(noCommande,client,date);
-       
-        
+        Commande uneCommande =new Commande();
+        uneCommande.setDatecommande(date);
+        uneCommande.setClient(client);
+        uneCommande.setNocommande(noCommande);
+               
+   
         // On appelle la fonction DAO qui va l'ajouter dans la BDD
         CommandeDAO.insert(uneCommande);
     }
@@ -59,8 +58,11 @@ public static void creerNouvelleCommande(Client client)
 public static void creerNouvelleLigneCommande(BigDecimal noCommande,Produit produit, Integer qte)
 {
     LigneCommandeId ligneID = new LigneCommandeId(noCommande,produit.getIdproduit());
+    LigneCommande ligneCmd = new LigneCommande();  
     
-    LigneCommande ligneCmd = new LigneCommande(ligneID,produit,qte);
+    ligneCmd.setId(ligneID);
+    ligneCmd.setProduit(produit);
+    ligneCmd.setQuantite(qte);
     
     CommandeDAO.insertLigne(ligneCmd);
 }
