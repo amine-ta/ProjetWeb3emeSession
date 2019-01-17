@@ -16,15 +16,14 @@ and open the template in the editor.
     
 }
 
-.btn-dark{
+.btn{
     background:#000000;
     color:#ffffff;
 }
-.grand {
-    height : 400px;
-    margin:30px;
-   
+.btn-btn{
+    background:#B22222;
 }
+
 
 .moyenne {
     height : 350px;
@@ -36,4 +35,12 @@ and open the template in the editor.
 
 #imagesPortail{
     height :150px;
+}
+
+#imageDetail{
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    width: 200px;
+    height: 200px;
 }

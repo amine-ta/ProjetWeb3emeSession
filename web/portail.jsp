@@ -39,7 +39,7 @@
     <body>
         <jsp:include page="NavBarre.jsp"/>
         <div class="container">     
-               <div class="cellule grand">                       
+                             
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
@@ -72,9 +72,9 @@
                                 <a class="right carousel-control" href="#myCarousel" data-slide="next">
                                   <span class="glyphicon glyphicon-chevron-right"></span>
                                   <span class="sr-only">Next</span>
-                                </a>
-                    </div>
-                </div>                                       
+                                </a>             
+                </div>  
+            <br>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
