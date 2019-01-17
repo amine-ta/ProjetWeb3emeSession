@@ -23,9 +23,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="css/style.css" type="text/css" rel="stylesheet" />
     </head>
-    <body class="container">
+    <body >
         <jsp:include page="NavBarre.jsp"/>
-         
+         <div class="container">
         <div>
             <div class="row">
                 
@@ -196,6 +196,6 @@
                 </div>
                 </div>     
             </div>        
-            
+         </div>      
     </body>
 </html>

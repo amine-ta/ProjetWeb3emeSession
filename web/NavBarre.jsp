@@ -1,50 +1,35 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<%@ taglib  uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<script src="script/script.js" type="text/javascript"></script>
-
-<c:set var="loc" value="fr_CA"/>
-<c:if test="${!(empty sessionScope.langueCourante)}">
-    <c:set var="loc" value="${sessionScope.langueCourante}"/>
-</c:if>
-
-<fmt:setLocale value = "${loc}"/>
-<fmt:setBundle basename="Langage"/>
 
 <nav class="navbar navbar-inverse">
-    <div class="row">
-        <div class="col-lg-6"> 
-            <span>
-                 <a class="navbar-brand" href="#" style="font-family:Brush Script MT; color:red; font-size:30">Pro-Vita Tarh&Cia inc.</a>
-            </span>
-            
-             <span>
-                <ul class="nav navbar-nav"> 
-                <li class="active"><a href="init"><fmt:message key="barre.Accueil"/></a></li>
-                <li><a href="ChangementLangue?language=fr_CA">FranÃ§ais</a></li>
-                <li><a href="ChangementLangue?language=en_CA">English</a></li>      
-                <li><a href="ChangementLangue?language=it_IT">Italiano</a></li>
-            </ul>
-            </span>
-               
-           
-
-        </div>
-        <div class="col-lg-6">
-
-            <div class="search-container">
-             
-                    <input type="text" placeholder="Search.." name="search" id="search" onkeyup="startSearch()">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-             
-            </div> 
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="ControPanier?action=cart"><span class="glyphicon glyphicon-shopping-cart"></span><fmt:message key="barre.panier"/>: ${count}</a></li>
-            </ul>
-
-        </div>
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="init">VentePro</a>
     </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="init"><fmt:message key="barre.Accueil">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Langue<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="ChangementLangue?language=en_CA">English</a></li>
+          <li><a href="ChangementLangue?language=it_IT">Italiano</a></li>
+          <li><a href="ChangementLangue?language=fr_CA">Français</a></li>       
+        </ul>
+      </li>
+      <li><a href="#">Page 2</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">       
+        <li>         
+                 <form class="navbar-form navbar-left" action="/action_page.php">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search" name="search">
+                      <div class="input-group-btn">
+                      </div>
+                    </div> 
+                </form>
+        </li>
+       <li><a href="ControPanier?action=cart"><span class="glyphicon glyphicon-shopping-cart"></span><fmt:message key="barre.panier"/> (${count})</a></li>  
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>   
 </nav>
-            
-        
+     
+

@@ -18,9 +18,9 @@
 
 </head>
 
-<body class="container">
+<body >
     <jsp:include page="NavBarreCheckout.jsp"/>
-
+<div class="container">
     <div> 
         <c:choose>
             <c:when test="${shoppingcart != null  && shoppingcart.size() > 0 }">
@@ -96,6 +96,6 @@
             </div>  
         </form> 
 
-    </div> 
-
+    </div>  
+   </div>  
 </body>

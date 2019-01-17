@@ -23,9 +23,9 @@
 
 </head>
 
-<body class="container">
+<body >
     <jsp:include page="NavBarre.jsp"/>
-
+    <div class="container">
     <div> 
         <c:choose>
             <c:when test="${shoppingcart != null  && shoppingcart.size() > 0 }">
@@ -46,7 +46,7 @@
 
                                 <c:forEach  varStatus="loop"  var="prod" items="${shoppingcart}">
                                     <tr>
-                                        <td><a href="detailProduit?id=${prod.produit.idproduit}&action=detail"><b>${prod.produit.nomproduit}</b></a></td>
+                                        <td><a style="width:100%;color:#B22222;" href="detailProduit?id=${prod.produit.idproduit}&action=detail"><b>${prod.produit.nomproduit}</b></a></td>
                                         <td><b>${prod.produit.marque.nom}</b></td>
                                         <td><b>${prod.produit.formatpro}</b></td>
                                         <td><b>${prod.quantite}</b></td>
@@ -67,18 +67,20 @@
                     </div>
                 </div>  
                      <div class="row">
-                    <form action="ControPanier" method="post">
-                        <div class="col-lg-6">                       
+                   
+                        <div class="col-lg-6">  
+                             <form action="ControPanier" method="post">
                             <input type="hidden" name="action" value="CHECKOUT"/>
-                            <span><input type="submit" name="action" class="btn btn-info" value=<fmt:message key="panier.btnpayer"/> /></span>
-                        </div> 
-                    </form>     
-                    <form action="init" method="post">                          
+                            <span><input style="width:100%;" type="submit" name="action" class="btn btn-dark" value=<fmt:message key="panier.btnpayer"/> /></span>
+                             </form>     
+                        </div>                      
+                                              
                         <div class="col-lg-6"> 
+                            <form action="init" method="post">
                             <input type="hidden" name="action" value="SHOPPING"/>
-                            <span><input type="submit" class="btn btn-info" value=<fmt:message key="panier.btncontinuer"/> /></span>
-                        </div>  
-                    </form> 
+                            <span><input style="width:100%" type="submit" class="btn btn-dark" value=<fmt:message key="panier.btncontinuer"/> /></span>
+                            </form> 
+                        </div>                
                 </div> 
                 
             </c:when>
@@ -89,12 +91,13 @@
                         <form action="init" method="post">                          
                            
                                 <input type="hidden" name="action" value="SHOPPING"/>
-                                 <span><input type="submit" class="btn btn-info" value=<fmt:message key="panier.btncontinuer"/> /></span>
+                                 <span><input style="width:100%" type="submit" class="btn btn-dark" value=<fmt:message key="panier.btncontinuer"/> /></span>
                              
                         </form> 
                     </div>  
                 </div>
             </c:otherwise>
-        </c:choose>           
+        </c:choose>        
+   </div>
 </div>
 </body>

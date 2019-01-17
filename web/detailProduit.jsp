@@ -22,10 +22,10 @@
 
         <title>JSP Page</title>
     </head>
-    <body class="container">
+    <body >
       
         <jsp:include  page="NavBarre.jsp"/>
-
+<div class="container">
         <div> 
             <div class="row">
                 <div class="col-sm-6">
@@ -109,5 +109,6 @@
                 </div> 
             </div>
         </div> 
+     </div>                       
     </body>
 </html>

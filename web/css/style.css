@@ -7,115 +7,33 @@ and open the template in the editor.
 
 */
 
-.topnav .search-container button {
-  float: right !important;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #ddd;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-}
-
-.topnav .search-container button:hover {
-  background: #ccc;
-}
-
-
-body {
-	background-color : lightgray;
-}
-div {
-    padding : 0px !important;
-}
 .row {
     margin-top : 1px;
 }
-h4 {
-    margin-top : 30px;
-}
-.cellule {
-    background-color : white;
-    padding : 20px 20px;
-    font-weight : bold;
-    margin : 5px;
-    position : relative;
+
+#bouton{
+    width: 100%;
+    
 }
 
-.cellule+.cellule {
-    margin-top : 2px !important;
+.btn-dark{
+    background:#000000;
+    color:#ffffff;
 }
 .grand {
+    height : 400px;
+    margin:30px;
+   
+}
+
+.moyenne {
     height : 350px;
-    border : 1px solid lightgray;
-}
-
-img{
-    width: 70%;
-    height: 100%;
-}
-
-div.gallery.haut{
-    margin: 5px;
-    float: left;
-    width: 95% !important;
-    height: 60% !important;
-}
-
-div.gallery:hover {
-    border: 4px solid #777;
-}
-
-div.image {
-    width: 97%;
-    height: 150px ;
     text-align: center;
+    padding: 10px;
     margin: 10px;
 }
 
-div.description{
-     width: 100%;
-     height: 40% ;
-     text-align: center;
-}
 
-div.detail{
-  display: inline-block;
-    }
-    
-.form-control {
-   display: inline !important; 
-   }
- 
-nav{
-   height: 100px !important; 
- }
- 
- .gauche   {
-       float:left !important;
-       width:500px !important;
- }
- 
- .droite   {
-       float:right !important;
- }
- .btn-info{
-     height:50px !important;
-     width: 200px !important;
-
- }    
- #qte{
-     float: left !important;
- }
- 
-
-
-#boutonPortail{
- height:40px !important;
- width: 100% ;
- text-align: center !important;
-}
-
-hr{
-  margin-top: 15px;  
+#imagesPortail{
+    height :150px;
 }
