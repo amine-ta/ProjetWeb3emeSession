@@ -55,6 +55,7 @@ public class init extends HttpServlet {
         LiProduit = GestionnaireProduit.rechercherTousProduits();
         GestionnairePanier gestionnairePanier = new GestionnairePanier();
         session.setAttribute("gestionnaire", gestionnairePanier);
+        
         session.setAttribute("count",0);
         session.setAttribute("ListPoduit", LiProduit);
         session.setAttribute("ListMarque", LiMarque);

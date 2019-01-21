@@ -78,7 +78,7 @@
                         </div>                      
                                               
                         <div class="col-lg-6"> 
-                            <form action="ControlPanier" method="post">
+                            <form action="ControlPortail" method="post">
                             <input type="hidden" name="action" value="SHOPPING"/>
                             <span><input style="width:100%" type="submit" class="btn btn-dark" value=<fmt:message key="panier.btncontinuer"/> /></span>
                             </form> 
@@ -90,7 +90,7 @@
                 <h4><fmt:message key="panier.vide"/></h4>
                 <div class="row">
                     <div class="col-lg-12"> 
-                        <form action="ControlPanier" method="post">                          
+                        <form action="ControlPortail" method="post">                          
                            
                                 <input type="hidden" name="action" value="SHOPPING"/>
                                  <span><input style="width:100%" type="submit" class="btn btn-dark" value=<fmt:message key="panier.btncontinuer"/> /></span>

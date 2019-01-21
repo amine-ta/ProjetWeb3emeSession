@@ -89,7 +89,7 @@
                 <h4><fmt:message key="checkout.message"/></h4>
             </c:otherwise>
         </c:choose>      
-        <form action="ControlPanier" method="post">                          
+        <form action="ControlPortail" method="post">                          
             <div class="col-lg-12"> 
                 <input type="hidden" name="action" value="SHOPPING"/>
                 <span><input type="submit" class="btn btn-info" value=<fmt:message key="checkout.bouton"/> /></span>

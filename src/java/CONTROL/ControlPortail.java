@@ -37,10 +37,10 @@ public class ControlPortail extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-   
-     
-        HttpSession session = request.getSession();
+            throws ServletException, IOException {    
+        HttpSession session = request.getSession();       
+        session.setAttribute("ListPoduit",GestionnaireProduit.rechercherTousProduits()); 
+        
         session.setAttribute("PageCourante","/portail.jsp");
         String language = request.getParameter("language");
               

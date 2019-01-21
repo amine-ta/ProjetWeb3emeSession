@@ -32,6 +32,7 @@ public class ControlClient extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
          HttpSession session = request.getSession();
          Vector buylist = (Vector) session.getAttribute("shoppingcart");
          session.setAttribute("shoppingcart", buylist);

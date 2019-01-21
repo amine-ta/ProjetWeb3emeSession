@@ -5,19 +5,13 @@
  */
 package CONTROL;
 
-import DAO.ProduitDAO;
 import JavaMethodes.GestionnairePanier;
 import JavaMethodes.GestionnaireProduit;
-import Services.IGestionnairePanier;
-import entite.LigneCommande;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Vector;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
