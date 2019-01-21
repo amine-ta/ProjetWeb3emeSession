@@ -18,12 +18,9 @@ import java.util.Vector;
  */
 public class GestionnairePanier implements IGestionnairePanier {
 
-    private Vector panier;
+    private Vector<LigneCommande> panier;
     private Produit produit;
     private LigneCommande lignecmd;
-    public static  int count=0;
-    
-
     
     private Produit getSingleProduit(String Item) {
         Integer id = Integer.valueOf(Item);
@@ -44,22 +41,22 @@ public class GestionnairePanier implements IGestionnairePanier {
         
 
         if (panier == null) {
-            count++;
-            panier = new Vector();
+      
+            panier = new Vector<LigneCommande>();
             panier.addElement(lignecmd);
         } else {
             
             for (int i = 0; i < panier.size(); i++) {
                 LigneCommande Ligneproduit = (LigneCommande)panier.elementAt(i);
                 if (Ligneproduit.getProduit().getIdproduit().equals(lignecmd.getProduit().getIdproduit())) {
-                    count++;
+                
                     Ligneproduit.setQuantite(Ligneproduit.getQuantite()+lignecmd.getQuantite());
                     panier.setElementAt(Ligneproduit,i);
                     match = true;
                 } //end of if name matches
             } // end of for
             if (!match){
-            count++;
+            
             panier.addElement(lignecmd);
             }
         }
@@ -81,18 +78,17 @@ public class GestionnairePanier implements IGestionnairePanier {
     @Override
     public void SupprimerUnProduitPanier(String index) {        
         Integer id = Integer.valueOf(index);
-        LigneCommande ligneC =(LigneCommande)panier.get(id);
-        count -=ligneC.getQuantite();
         panier.removeElementAt(id);
-        if(panier.isEmpty()){
-            panier=null;
-        }
     }
 
  
-    public static int getCount() {
-        return count;
+     public  int getCount() {
+        int count=0;
+        for(int i=0;i<panier.size();i++) 
+        count +=panier.get(i).getQuantite();      
+        return count;             
     }
+
 
 }
 

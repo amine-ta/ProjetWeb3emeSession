@@ -2,10 +2,10 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="init">VentePro</a>
+      <a class="navbar-brand" href="ControlPortail">VentePro</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="init"><fmt:message key="barre.Accueil">Home</a></li>
+      <li class="active"><a href="ControlPortail"><fmt:message key="barre.Accueil">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Langue<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="ChangementLangue?language=en_CA">English</a></li>

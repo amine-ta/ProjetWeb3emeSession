@@ -56,6 +56,10 @@
         <servlet-name>Deconnexion</servlet-name>
         <servlet-class>CONTROL.Deconnexion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlPortail</servlet-name>
+        <servlet-class>CONTROL.ControlPortail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>detailProduit</servlet-name>
         <url-pattern>/detailProduit</url-pattern>
@@ -83,6 +87,10 @@
     <servlet-mapping>
         <servlet-name>Deconnexion</servlet-name>
         <url-pattern>/Deconnexion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlPortail</servlet-name>
+        <url-pattern>/ControlPortail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

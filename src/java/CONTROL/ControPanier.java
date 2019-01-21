@@ -31,8 +31,11 @@ import javax.servlet.http.HttpSession;
  * @author Mohamed Amine Tarhouni et Gian Gabriele Ciampa
  */
 public class ControPanier extends HttpServlet {
-    IGestionnairePanier gestionnairePanier =new GestionnairePanier();
     String url;
+    BigDecimal montantTotal;    
+    String msgErreurQteStk="";
+
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,10 +48,8 @@ public class ControPanier extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-       
-        BigDecimal montantTotal;
-       
-       String msgErreurQteStk="";
+        GestionnairePanier gestionnairePanier=(GestionnairePanier)session.getAttribute("gestionnaire");
+        
        String langue="";
        
        langue = (String)session.getAttribute("langueCourante");
@@ -85,27 +86,25 @@ public class ControPanier extends HttpServlet {
                
                             if(action.equals("ADD")){
                                    url = "/detailProduit.jsp";
-                                   session.setAttribute("count",GestionnairePanier.count);
+                                   
                                    session.setAttribute("PageCourante","/detailProduit.jsp");
                                }
                                if(action.equals("portail")){
-                                   session.setAttribute("count",GestionnairePanier.count);
+                              
                                    session.setAttribute("PageCourante","/portail.jsp");
                                    url = "/portail.jsp";
                                }
                   }
 
          
-            else if(action.equals("cart")){
-                 session.setAttribute("count",GestionnairePanier.count);
+            else if(action.equals("cart")){         
                  session.setAttribute("PageCourante","/panier.jsp");
                  url = "/panier.jsp";
               }
             
             else if(action.equals("DELETE")){               
                         String del = request.getParameter("delindex");
-                        gestionnairePanier.SupprimerUnProduitPanier(del);                       
-                        session.setAttribute("count", GestionnairePanier.count);                                      
+                        gestionnairePanier.SupprimerUnProduitPanier(del);                                                             
                         url = "/panier.jsp";
                 }
             }//Fin If De (action.equals("ADD")||action.equals("portail")
@@ -121,7 +120,9 @@ public class ControPanier extends HttpServlet {
             url = "/PageClient.jsp";
         }
         
+              
                 session.setAttribute("shoppingcart", gestionnairePanier.getPanier());
+                session.setAttribute("count",gestionnairePanier.getCount());
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
                 rd.forward(request, response);

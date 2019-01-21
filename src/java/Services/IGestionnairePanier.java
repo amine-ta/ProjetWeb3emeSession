@@ -17,4 +17,5 @@ public interface IGestionnairePanier{
     void ajouterProduitDansPanier(String idProduit,String qte);
     void SupprimerUnProduitPanier(String id);
     Vector getPanier();
+    int getCount();
 }

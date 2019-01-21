@@ -5,16 +5,14 @@
  */
 package CONTROL;
 
-import JavaMethodes.GestionnairePanier;
 import JavaMethodes.GestionnaireProduit;
+import entite.Marque;
 import entite.Produit;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,17 +21,12 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 1895088
+ * @author Administrateur
  */
-public class init extends HttpServlet {
-
-    String nextJSP;
-    List LiCategorie;
-    List LiMarque;
-    List LiProduit;
-    ServletContext application ;
-  
-    
+public class ControlPortail extends HttpServlet {
+        List<Produit> ALlProduit =new ArrayList();
+        List<String> AllNameProduit=new ArrayList<>();
+        List<Marque> LiMarque=new ArrayList<>();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,28 +38,12 @@ public class init extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
-
-    
-    HttpSession session = request.getSession();
+   
      
-        LiCategorie = GestionnaireProduit.rechercherToutesCategories();
-        LiMarque = GestionnaireProduit.rechercherToutesMarques();
-        LiProduit = GestionnaireProduit.rechercherTousProduits();
-        GestionnairePanier gestionnairePanier = new GestionnairePanier();
-        session.setAttribute("gestionnaire", gestionnairePanier);
-        session.setAttribute("count",0);
-        session.setAttribute("ListPoduit", LiProduit);
-        session.setAttribute("ListMarque", LiMarque);
-        session.setAttribute("ListCategorie", LiCategorie);  
-        
-        nextJSP = "/portail.jsp";
+        HttpSession session = request.getSession();
         session.setAttribute("PageCourante","/portail.jsp");
         String language = request.getParameter("language");
-        
-    
-      
-         
+              
         if (language != null)
         {    
             session.setAttribute("langueCourante", language);
@@ -92,11 +69,10 @@ public class init extends HttpServlet {
             session.setAttribute("motDispo","Disponible");
         }    
         
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/portail.jsp");
         dispatcher.forward(request, response);
-       
-}
-    
+               
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
