@@ -5,6 +5,7 @@
  */
 package CONTROL;
 
+import JavaMethodes.GestionnairePanier;
 import JavaMethodes.GestionnaireProduit;
 import entite.Marque;
 import entite.Produit;
@@ -39,11 +40,8 @@ public class ControlPortail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {    
         HttpSession session = request.getSession();       
-        session.setAttribute("ListPoduit",GestionnaireProduit.rechercherTousProduits()); 
-        
-        session.setAttribute("PageCourante","/portail.jsp");
-        String language = request.getParameter("language");
-              
+        session.setAttribute("ListPoduit",GestionnaireProduit.rechercherTousProduits());     
+        String language = request.getParameter("language");             
         if (language != null)
         {    
             session.setAttribute("langueCourante", language);

@@ -84,8 +84,14 @@ public class GestionnairePanier implements IGestionnairePanier {
  
      public  int getCount() {
         int count=0;
+        if(panier==null){
+         count=0;
+        }
+         else{
         for(int i=0;i<panier.size();i++) 
-        count +=panier.get(i).getQuantite();      
+        count +=panier.get(i).getQuantite();
+        }
+        
         return count;             
     }
 
